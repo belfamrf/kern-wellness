@@ -7,7 +7,7 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Setup + brief selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu pilihan arah desain |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Brief + design system selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu logo |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -40,12 +40,13 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 
 ## 01-wellness (proyek aktif)
 
-- **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`.
-- **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ditampilkan sebagai "from"; kontak lewat form (Formspree) + Instagram; foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
-- **Logo:** wordmark + monogram; dibuat **setelah** arah desain dipilih, memakai skill/repo logo yang akan dikirim Belfa.
+- **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`. Dokumen `BRIEF.md` + `DESIGN.md` sudah ada.
+- **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ilustratif ditampilkan sebagai "from"; kontak lewat form Formspree (Instagram ditunda sampai ada URL asli); foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
+- **Arah desain dikunci:** **The Quiet Clinic** (arah A) dengan disiplin struktur dari arah B. Palet bone `#f3f0e8` / ink `#1b1d19` / moss `#4a5545` + aksen lime `#d8f36b`; huruf **Fraunces + Manrope**; elemen khas **Movement screen** 4 pertanyaan.
+- **Logo:** wordmark + monogram; **sekarang waktunya**, menunggu link skill/repo logo dari Belfa. Hasil akhir harus SVG.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
-- **Belum ada:** arah desain final, logo, konten, foto, repo GitHub.
-- **Langkah berikutnya:** Belfa memilih 1 dari 3 arah desain yang diajukan.
+- **Belum ada:** logo, konten final, foto, repo GitHub.
+- **Langkah berikutnya:** pasang skill/repo logo, buat logo SVG, lalu bangun halaman.
 
 ## _referensi
 
