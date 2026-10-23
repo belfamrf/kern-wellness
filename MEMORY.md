@@ -43,17 +43,18 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`. Dokumen `BRIEF.md` + `DESIGN.md` sudah ada.
 - **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ilustratif ditampilkan sebagai "from"; kontak lewat form Formspree (Instagram ditunda sampai ada URL asli); foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
 - **Arah desain dikunci:** **The Quiet Clinic** (arah A) dengan disiplin struktur dari arah B. Palet bone `#f3f0e8` / ink `#1b1d19` / moss `#4a5545` + aksen lime `#d8f36b`; huruf **Fraunces + Manrope**; elemen khas **Movement screen** 4 pertanyaan.
-- **Logo:** wordmark + monogram; **sekarang waktunya**, menunggu link skill/repo logo dari Belfa. Hasil akhir harus SVG.
+- **Logo:** wordmark + monogram; skill `logo-design` sudah terpasang, tinggal restart opencode. Hasil akhir harus SVG.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Belum ada:** logo, konten final, foto, repo GitHub.
-- **Langkah berikutnya:** pasang skill/repo logo, buat logo SVG, lalu bangun halaman.
+- **Langkah berikutnya:** restart opencode, pilih model vision, lalu jalankan skill `logo-design`.
 
 ## Alat & skills (opencode)
 
 - **Skill global opencode** (`C:\Users\USER\.config\opencode\skills`), disalin 23 Oktober 2026 dari `Documents\portofolio\.claude\skills`: `no-ai-slop`, `web-design-guidelines`, `writing-guidelines`, `vercel-react-best-practices`. **Perlu restart opencode** agar aktif.
 - **Ditunda:** `impeccable` (21 MB, hooknya khusus Claude Code; dipakai manual dari folder lama saat review), `playwright-cli` (CLI sudah global; skill menyusul saat QA visual), `vercel-optimize`/`deploy-to-vercel`/`vercel-cli-with-tokens` (tahap deploy), `vercel-composition-patterns` (opsional).
 - **Tidak dipakai:** `vercel-react-native-skills`, `vercel-react-view-transitions`.
-- **Skill/repo logo:** belum ada di daftar lama; menunggu link dari Belfa.
+- **Skill/repo logo:** `logo-design` dari **kaankiziltug/logo-design-skill** (MIT; library SVG-nya trademark, hanya untuk referensi) sudah dipasang global di `C:\Users\USER\.config\opencode\skills\logo-design` pada 23 Oktober 2026. Isi 10,3 MB / 1.464 file, termasuk 1.400+ logo referensi. Python 3.14 dan renderer Chrome tersedia. **Perlu restart opencode** agar muncul sebagai skill.
+- **Catatan model:** `glm-5.2` yang dipakai sekarang **text-only**, sedangkan skill logo merender PNG dan perlu dilihat. Untuk tahap logo, sebaiknya ganti ke model vision (`glm-5.3-flash` atau `gpt-5.6`) lewat `/model`.
 - **Sumber inventaris:** `C:\Users\USER\Documents\portofolio\skills-lock.json` dan `.claude\skills`. Folder lama jangan dihapus; masih menyimpan referensi, skills, dan riwayat.
 
 ## _referensi
