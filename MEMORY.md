@@ -48,6 +48,14 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Belum ada:** logo, konten final, foto, repo GitHub.
 - **Langkah berikutnya:** pasang skill/repo logo, buat logo SVG, lalu bangun halaman.
 
+## Alat & skills (opencode)
+
+- **Skill global opencode** (`C:\Users\USER\.config\opencode\skills`), disalin 23 Oktober 2026 dari `Documents\portofolio\.claude\skills`: `no-ai-slop`, `web-design-guidelines`, `writing-guidelines`, `vercel-react-best-practices`. **Perlu restart opencode** agar aktif.
+- **Ditunda:** `impeccable` (21 MB, hooknya khusus Claude Code; dipakai manual dari folder lama saat review), `playwright-cli` (CLI sudah global; skill menyusul saat QA visual), `vercel-optimize`/`deploy-to-vercel`/`vercel-cli-with-tokens` (tahap deploy), `vercel-composition-patterns` (opsional).
+- **Tidak dipakai:** `vercel-react-native-skills`, `vercel-react-view-transitions`.
+- **Skill/repo logo:** belum ada di daftar lama; menunggu link dari Belfa.
+- **Sumber inventaris:** `C:\Users\USER\Documents\portofolio\skills-lock.json` dan `.claude\skills`. Folder lama jangan dihapus; masih menyimpan referensi, skills, dan riwayat.
+
 ## _referensi
 
 - `ANALISIS-REFERENSI.md`: pola desain dari ~20 website referensi (gelap, premium, satu aksen berani, satu elemen interaktif yang diingat).
