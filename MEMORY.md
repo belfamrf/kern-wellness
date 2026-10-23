@@ -7,7 +7,7 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Kosong**, belum ada git |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Setup selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu brief |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -37,6 +37,13 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - Tidak boleh ada testimoni, logo klien, angka, nama perusahaan, atau jabatan yang dikarang. Tiga demo berlabel **concept project**.
 - AI ditawarkan sebagai tambahan di dalam proyek website (bukan layanan ketiga).
 - Link Upwork **belum** dipasang di website sampai profil Upwork dirapikan.
+
+## 01-wellness (proyek aktif)
+
+- **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`.
+- **Sudah ada:** `package.json`, `src/app/{layout,page,globals.css}`, `AGENTS.md`, `CLAUDE.md`, `MEMORY.md`.
+- **Belum ada:** brief, arah desain, logo, konten, foto, repo GitHub.
+- **Langkah berikutnya:** kumpulkan brief, pilih 1 dari 3 arah desain, bangun logo + website.
 
 ## _referensi
 
