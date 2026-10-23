@@ -7,7 +7,7 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Setup selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu brief |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Setup + brief selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu pilihan arah desain |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -41,9 +41,11 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 ## 01-wellness (proyek aktif)
 
 - **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`.
-- **Sudah ada:** `package.json`, `src/app/{layout,page,globals.css}`, `AGENTS.md`, `CLAUDE.md`, `MEMORY.md`.
-- **Belum ada:** brief, arah desain, logo, konten, foto, repo GitHub.
-- **Langkah berikutnya:** kumpulkan brief, pilih 1 dari 3 arah desain, bangun logo + website.
+- **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ditampilkan sebagai "from"; kontak lewat form (Formspree) + Instagram; foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
+- **Logo:** wordmark + monogram; dibuat **setelah** arah desain dipilih, memakai skill/repo logo yang akan dikirim Belfa.
+- **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
+- **Belum ada:** arah desain final, logo, konten, foto, repo GitHub.
+- **Langkah berikutnya:** Belfa memilih 1 dari 3 arah desain yang diajukan.
 
 ## _referensi
 
