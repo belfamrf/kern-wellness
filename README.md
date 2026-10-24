@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KERN
 
-## Getting Started
+Situs konsep untuk studio strength & mobility fiktif di Nørrebro, Copenhagen. Bahasa situs Inggris; dokumen proyek Indonesia. KERN **bukan bisnis nyata** dan formulirnya tidak mengirim booking sungguhan.
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router, folder `src/`), React 19, Tailwind 4, TypeScript, ESLint. Font Fraunces + Manrope lewat `next/font`.
+
+## Perintah
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # pengembangan di http://localhost:3000
+npm run lint     # aturan kode
+npm run build    # build produksi
+npm run start    # jalankan hasil build
+npm run og       # render ulang kartu OG 1200x630
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Struktur singkat
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app/page.tsx` — seluruh halaman (section 01–07).
+- `src/components/movement-screen.tsx` — movement screen 4 pertanyaan.
+- `src/components/booking-form.tsx` — form booking demo + validasi.
+- `src/components/mobile-menu.tsx` — menu di bawah 801px.
+- `src/lib/site.ts` — URL produksi dan metadata yang dipakai bersama.
+- `src/app/sitemap.ts`, `src/app/robots.ts` — SEO.
+- `logo-kit/` — master logo, ekspor, presentasi, dan generator aset.
+- `public/brand/` — aset yang dipakai situs (favicon, ikon, OG, wordmark).
 
-## Learn More
+## Form booking
 
-To learn more about Next.js, take a look at the following resources:
+Form berjalan dalam mode demo tanpa konfigurasi tambahan. Untuk mengaktifkan pengiriman sungguhan, isi `NEXT_PUBLIC_FORMSPREE_ENDPOINT` di `.env.local` dengan endpoint Formspree. Variabel ini publik dan tidak boleh berisi rahasia. Jangan mengisi endpoint sebelum ada penerima yang disetujui.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Domain
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Rencana produksi: `https://kern.belfamuhammad.com` (subdomain dari `belfamuhammad.com`). Setelah project Vercel dibuat:
 
-## Deploy on Vercel
+1. Tambah domain di Vercel, salin target CNAME yang ditampilkan.
+2. Di Domainesia, tambah CNAME `kern` dengan target tersebut.
+3. Jangan ubah nameserver.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ubah URL hanya di `src/lib/site.ts`, lalu jalankan `npm run og` bila teks kartu berubah.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Aset logo
+
+Semua SVG/PNG/ICO/manifest dibuat oleh `node logo-kit/build-logos.mjs`. Jangan mengedit hasil ekspor secara manual. Panduan ada di `logo-kit/README.md` dan `logo-kit/brand-guidelines.md`.
+
+## Dokumen
+
+- `BRIEF.md` — brief dan batasan proyek.
+- `DESIGN.md` — sistem desain dan aturan implementasi.
+- `MEMORY.md` — status pekerjaan dan langkah berikutnya.
+- `CREDITS.md` — belum ada; wajib dibuat saat foto berlisensi dipasang.
+
+## Batasan
+
+Tanpa testimoni, angka pencapaian, nama coach, alamat, telepon, atau jam buka karangan. Harga di situs adalah ilustrasi. Semua label concept project harus tetap terlihat.

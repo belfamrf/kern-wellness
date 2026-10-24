@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KERN — logo test sheet</title>
+<style>
+  @font-face{font-family:"Fraunces";src:url("fonts/fraunces-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+  @font-face{font-family:"Manrope";src:url("fonts/manrope-latin.woff2") format("woff2");font-weight:200 800;font-display:block}
+  :root{
+    --bone:#f3f0e8; --paper:#fbf9f4; --ink:#1b1d19; --soft:#555b50;
+    --moss:#4a5545; --line:#d8d2c4; --lime:#d8f36b;
+    --serif:"Fraunces",Georgia,serif; --sans:"Manrope",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bone);color:var(--ink);font:14px/1.55 var(--sans)}
+  .wrap{width:min(100% - 64px,1160px);margin:0 auto;padding:56px 0 88px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;border-bottom:1px solid var(--ink);padding-bottom:20px}
+  h1{margin:0;font-family:var(--serif);font-weight:500;font-size:40px;letter-spacing:-.02em;line-height:1}
+  h2{margin:0 0 4px;font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em}
+  p{margin:0}
+  .kicker{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .note{font-size:12px;color:var(--soft);max-width:62ch}
+  section{margin-top:56px}
+  .head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:22px}
+  .logo{display:block;height:auto;color:var(--ink)}
+  .logo--bone{color:var(--bone)}
+  .logo--moss{color:var(--moss)}
+  .logo--mono{--point:currentColor}
+  .grid{display:grid;gap:0;border-top:1px solid var(--line)}
+  .cell{display:grid;grid-template-columns:170px 1fr;gap:28px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+  .cell .cap{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+  .tile{display:grid;place-items:center;min-height:120px;padding:22px}
+  .tile--ink{background:var(--ink)}
+  .tile--moss{background:var(--moss)}
+  .tile--paper{background:var(--paper);border:1px solid var(--line)}
+  .sizes{display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap}
+  .size{display:grid;gap:10px;justify-items:start}
+  .size .cap{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .clear{position:relative;display:inline-block;padding:26px;outline:1px dashed var(--line)}
+  .clear::after{content:"4 × point diameter";position:absolute;left:0;bottom:-20px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .donts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .dont{border:1px solid var(--line);background:var(--paper);padding:22px;display:grid;gap:16px;justify-items:center;min-height:190px;align-content:center;position:relative}
+  .dont .cap{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);text-align:center}
+  .dont::before{content:"Avoid";position:absolute;top:10px;left:12px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .stretch{transform:scaleX(1.7)}
+  .rotate{transform:rotate(-9deg)}
+  .glow{filter:drop-shadow(0 6px 5px rgba(27,29,25,.45))}
+  .busy{background:repeating-linear-gradient(115deg,#c9c3b4 0 18px,#8f9386 18px 36px);width:100%;display:grid;place-items:center;padding:22px;min-height:96px}
+  .lime{color:var(--lime)}
+  .icons{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .icons img{display:block;image-rendering:auto}
+  footer{margin-top:64px;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;gap:24px;font-size:11px;color:var(--soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="kicker">KERN · logo test sheet</p>
+      <h1>Calibrated K</h1>
+    </div>
+    <p class="note">Check each row on screen before publishing. The point is a detail: if it disappears at small size, the mark should still read.</p>
+  </header>
+
+  <section>
+    <div class="head">
+      <h2>Primary colours</h2>
+      <p class="note">Full colour on light, reversed on dark. One-colour when reproduction is constrained.</p>
+    </div>
+    <div class="grid">
+      <div class="cell">
+        <span class="cap">Ink on bone</span>
+        <div class="tile tile--paper">
+          <img class="logo" style="width:300px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="KERN horizontal lockup, ink on bone">
+        </div>
+      </div>
+      <div class="cell">
+        <span class="cap">Bone on ink</span>
+        <div class="tile tile--ink">
+          <img class="logo" style="width:300px" src="exports/kern-horizontal-white.svg" width="820" height="256" alt="KERN horizontal lockup, bone on ink">
+        </div>
+      </div>
+      <div class="cell">
+        <span class="cap">Bone on moss</span>
+        <div class="tile tile--moss">
+          <img class="logo" style="width:196px" src="exports/kern-stacked-white.svg" width="520" height="442" alt="KERN stacked lockup, bone on moss">
+        </div>
+      </div>
+      <div class="cell">
+        <span class="cap">One colour, moss</span>
+        <div class="tile tile--paper">
+          <img class="logo" style="width:260px" src="exports/kern-wordmark-mono-4a5545.svg" width="532" height="192" alt="KERN wordmark, one colour">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <h2>Small sizes</h2>
+      <p class="note">Actual pixel sizes. Below 24 px, switch to the small-size symbol; at 16 px do not expect the point to survive.</p>
+    </div>
+    <div class="sizes">
+      <div class="size">
+        <img class="logo" style="width:120px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="Horizontal lockup at 120 pixels">
+        <span class="cap">120 px · min</span>
+      </div>
+      <div class="size">
+        <img class="logo" style="width:72px" src="exports/kern-stacked-black.svg" width="520" height="442" alt="Stacked lockup at 72 pixels">
+        <span class="cap">72 px · min</span>
+      </div>
+      <div class="size">
+        <img class="logo" style="width:32px" src="exports/kern-symbol-black.svg" width="256" height="256" alt="Symbol at 32 pixels">
+        <span class="cap">32 px</span>
+      </div>
+      <div class="size">
+        <img class="logo" style="width:24px" src="exports/kern-symbol-black.svg" width="256" height="256" alt="Symbol at 24 pixels">
+        <span class="cap">24 px</span>
+      </div>
+      <div class="size">
+        <img class="logo" style="width:16px" src="masters/kern-symbol-small.svg" width="256" height="256" alt="Small-size symbol at 16 pixels">
+        <span class="cap">16 px · small file</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <h2>Icons and clear space</h2>
+      <p class="note">Exports as used by the browser and by app platforms. Hover-free, flat, and readable on both light and dark browser themes.</p>
+    </div>
+    <div class="grid">
+      <div class="cell">
+        <span class="cap">Favicon · 32 / 16</span>
+        <div class="icons">
+          <img src="exports/favicon-32.png" width="32" height="32" alt="Favicon at 32 pixels">
+          <img src="exports/favicon-16.png" width="16" height="16" alt="Favicon at 16 pixels">
+          <img src="exports/kern-symbol-app-icon-64.png" width="64" height="64" alt="App icon at 64 pixels">
+          <img src="exports/kern-symbol-app-icon-180.png" width="90" height="90" alt="App icon at 90 pixels">
+        </div>
+      </div>
+      <div class="cell">
+        <span class="cap">Clear space</span>
+        <div class="clear">
+          <img class="logo" style="width:300px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="Clear space around the horizontal lockup">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <h2>Misuse</h2>
+      <p class="note">These are shown as warnings, not options. No stretching, rotation, effects, recolouring, or busy backgrounds.</p>
+    </div>
+    <div class="donts">
+      <div class="dont">
+        <img class="logo stretch" style="width:130px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="">
+        <span class="cap">Do not stretch</span>
+      </div>
+      <div class="dont">
+        <img class="logo rotate" style="width:140px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="">
+        <span class="cap">Do not rotate</span>
+      </div>
+      <div class="dont">
+        <img class="logo glow" style="width:140px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="">
+        <span class="cap">Do not add effects</span>
+      </div>
+      <div class="dont">
+        <img class="logo" style="width:130px" src="exports/kern-stacked-black.svg" width="520" height="442" alt="">
+        <span class="cap">Do not rearrange the lockup</span>
+      </div>
+      <div class="dont">
+        <div class="busy">
+          <img class="logo" style="width:130px" src="exports/kern-horizontal-white.svg" width="820" height="256" alt="">
+        </div>
+        <span class="cap">Do not place on busy images</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>KERN — concept project. Not a real business.</span>
+    <span>Logo kit · 24 October 2026</span>
+  </footer>
+</div>
+</body>
+</html>

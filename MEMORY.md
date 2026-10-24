@@ -1,13 +1,68 @@
 # MEMORY: progres portofolio
 
-Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+
+## Pembaruan terakhir — 24 Oktober 2026 (menu mobile & audit)
+
+- **Menu mobile selesai** di `src/components/mobile-menu.tsx`: breakpoint 801px, panel bone selebar layar, 6 tautan 56px (termasuk Book intro), CTA header tetap terlihat. Ini disclosure, bukan modal: scroll tidak dikunci dan fokus tidak diperangkap. Tutup lewat Escape (fokus kembali ke tombol), klik di luar, pemilihan tautan, atau saat layar melebar. Setelah memilih tautan, fokus pindah ke heading tujuan.
+- **Perbaikan aksesibilitas:** simbol hero kini `role="img"` (sebelumnya `aria-label` pada `div` tanpa role sehingga bisa diabaikan), dan `.button` memakai `white-space: nowrap` agar header 320px tidak pecah.
+- **Metadata dirapikan:** `twitter:image:alt` + ukuran, `og:image:type`, author/creator menjadi **Belfa Muhammad** (bukan KERN, karena KERN fiktif), manifest mendapat `id`/`start_url`/`scope` dan em dash pada nama.
+- **Kesalahan yang ditemukan dan diperbaiki:** `scripts/build-og.mjs` sempat rusak karena edit PowerShell `Get-Content`/`Set-Content` tanpa UTF-8; teks "Nørrebro" menjadi "NA,rrebro" dan "·" menjadi karakter rusak di kartu OG. Skrip ditulis ulang UTF-8, kartu dirender ulang, dan teks diverifikasi lewat DOM (`ø` dan `·` ada, tanpa U+FFFD).
+- **Verifikasi:** lint/build lolos. CDP menguji 320/375/414/768/800/801/1440 px: tanpa overflow horizontal, header tidak tumpang tindih. Menu diuji buka/tutup, Escape, Tab ke tautan pertama, klik tautan (fokus ke H2), klik luar, dan resize; tanpa exception console. Screenshot di `%TEMP%/opencode/kern-menu/{375-closed,375-open,768-open,1440-closed}.png`.
+- **Docs drift diperbaiki:** `DESIGN.md` sebelumnya menyebut breakpoint 768px, focus trap, reveal 500/600ms, dua foto studio, dan nav footer yang tidak ada. Sekarang disesuaikan dengan implementasi. README default create-next-app diganti README proyek.
+- **Belum:** foto + `CREDITS.md`, Lighthouse/kontras/zoom, review visual OG/menu, deploy. Vercel CLI belum terpasang/terautentikasi; GitHub `gh` sudah login sebagai `belfamrf`.
+
+## Pembaruan terakhir — 24 Oktober 2026 (metadata publikasi)
+
+- **Domain publikasi diputuskan:** `https://kern.belfamuhammad.com` (subdomain dari `belfamuhammad.com`; DNS tetap di Domainesia). URL disimpan satu kali di `src/lib/site.ts`; `metadataBase`, canonical, `og:url`, sitemap, dan robots memakainya.
+- **Metadata publikasi terpasang:** canonical `/`, kartu OG `summary_large_image`, dan data terstruktur `WebSite` + kreator. Tidak ada `LocalBusiness`, alamat, telepon, atau angka karangan.
+- **OG image dibuat:** `public/brand/kern-og.png`, 1200×630, 50 KB, latar ink + wordmark bone + headline Fraunces + titik lime. Generator `scripts/build-og.mjs` (`npm run og`) memakai Chrome headless dan font brand dari `logo-kit/fonts/`.
+- **Sitemap/robots:** `src/app/sitemap.ts` (satu URL, monthly, priority 1) dan `src/app/robots.ts` (allow all + sitemap). `host` sengaja tidak dipakai karena formatnya non-standar.
+- **Verifikasi:** `npm run lint` dan `npm run build` lolos (route `/`, `/robots.txt`, `/sitemap.xml` statis). Dari server produksi lokal: canonical/og/twitter memakai URL absolut; robots dan sitemap keluar benar; OG 200 `image/png`; probe layout 1200×630 tanpa scroll, kedua font termuat, 213 warna sampel (bukan gambar kosong).
+- **Belum:** review visual kartu OG, deploy Vercel + CNAME, endpoint Formspree, menu mobile, foto + `CREDITS.md`, QA final. Tidak ada commit/push.
+
+## Pembaruan terakhir — 24 Oktober 2026 (sesi lanjutan)
+
+- **Font final terpasang.** `src/app/fonts.ts` memakai `next/font/google`: Fraunces variable (axes `opsz`) dan Manrope variable, subset latin, dengan variabel CSS `--font-fraunces` dan `--font-manrope`. `layout.tsx` memasang kedua variabel di `<html>`; `globals.css` memakainya dengan fallback Georgia/Arial. `npm run lint` dan `npm run build` lolos; kedua family benar-benar termuat di browser (dicek lewat `document.fonts`, bukan diasumsikan).
+- **Logo kit dibuat ulang secara terukur** lewat `logo-kit/build-logos.mjs` (SVG, PNG, ICO, manifest). Lockup stacked baru 520 × 442: simbol dan wordmark sekarang berbagi garis pusat; versi lama meleset 20 unit. Varian warna: `-black` = ink + titik lime, `-white` = bone + titik lime (bukan putih murni), `-mono-4a5545` = satu warna. Ikon/favicon memakai tile ink + simbol small bone + titik lime; ikon all-lime yang membuat titik menyatu sudah dihapus dari produksi.
+- **Presentasi logo ditulis ulang**: `logo-kit/kern-presentation.html` (7 slide) dan `logo-kit/kern-preview.html` (lembar uji). Nama orang, jabatan, email, dan handle karangan template sudah tidak ada. Slide PNG baru ada di `logo-kit/presentation-slides/slide-01..07.png`; lembar uji di `logo-kit/kern-preview.png`. Deck memakai ekspor SVG asli dan font brand dari `logo-kit/fonts/`.
+- **Movement screen dan form booking demo selesai.** Screen 4 pertanyaan dengan Back, progres, rekomendasi, Start over, fokus pindah ke legend/judul hasil, `aria-live` pada hasil, dan CTA yang memilih format di form. Form punya validasi, error per field, status yang jujur sebagai demo, dan jalur Formspree lewat `NEXT_PUBLIC_FORMSPREE_ENDPOINT` (belum diisi).
+- **Verifikasi sesi ini**: 375/768/900/1024/1280/1440 px tanpa overflow horizontal, tanpa anchor mati, tanpa gambar gagal; alur screen → hasil → booking → submit demo diuji lewat Chrome CDP dan lolos. Screenshot situs sementara di `%TEMP%/opencode/kern-site-{375,768,1440}.png`.
+- **Koreksi setelah review pengguna:** mockup app icon di slide 6 memakai simbol ink di atas bidang ink, sehingga hanya titik lime yang terlihat. Mockup sekarang memakai `exports/kern-symbol-app-icon.svg` asli (tile ink + K bone + titik lime); slide 06 sudah dirender ulang. File ikon/favicon sendiri tidak pernah bermasalah.
+- **Batasan penting:** model sesi ini **text-only dan tidak bisa melihat gambar**. Semua pemeriksaan bersifat struktural (ukuran, overflow, aset termuat, alur DOM), bukan penilaian visual. Review visual deck, 16 px favicon, dan halaman situs tetap harus dilakukan pengguna atau model vision sebelum dinyatakan final.
+- Belum ada commit atau push untuk seluruh pekerjaan font, logo, screen, dan form ini.
+
+### Rincian keputusan baru
+
+- Clear space logo sekarang **4 × diameter titik = 56 unit**; panduan lama hanya 1 × diameter (terlalu sempit) dan sudah diganti.
+- Titik lime adalah detail, bukan alat pengenal: jelas di ink/moss, tenang di bone, hilang di bawah 24 px. Jangan dibesarkan atau ditambah cincin untuk menutupinya.
+- Ukuran minimum: horizontal 120 px, stacked 72 px, simbol 24 px (small file 16 px).
+- Bar progres movement screen memakai ink, bukan lime, supaya kontras bar tipis tetap ≥3:1; `DESIGN.md` sudah disinkronkan.
+- Rekomendasi screen: `people` → small group; `new`/`returning`/tujuan `ease` → Foundation 1-on-1; `regular` lainnya → small group; sisanya → intro. Ini panduan preferensi, bukan diagnosis.
+- Format pilihan screen dan form dibagi lewat `src/lib/training-format.ts` (store `useSyncExternalStore`), tanpa email gate.
+- Nomor bagian situs kini 01 Principles, 02 Programs, 03 Screen, 04 Method, 05 Studio, 06 FAQ, 07 Booking. Nav desktop bertambah “Screen”.
+
+### Tugas berikutnya — urutan rekomendasi
+
+- [ ] **Review visual** deck 7 slide, favicon 16/32 px, kartu OG, dan situs (375/768/1440) dengan model vision atau mata sendiri; perbaiki hanya bila terlihat masalah. Jangan mengulang pemilihan konsep A.
+- [x] **Tambahkan menu mobile** — selesai; lihat catatan sesi terbaru.
+- [ ] **Pilih foto final**, pasang lewat `next/image`, tulis `CREDITS.md`; hero masih bidang moss tanpa foto.
+- [x] **Metadata publikasi**: URL `https://kern.belfamuhammad.com`, canonical, OG image 1200×630, sitemap/robots, dan `WebSite` JSON-LD sudah terpasang dan diverifikasi build.
+- [ ] **QA final**: Lighthouse mobile ≥95, kontras WCAG 2.2 AA, zoom 200%, keyboard, reduced motion, interaksi FAQ/menu.
+- [ ] **Commit, repo GitHub, deploy Vercel** setelah diminta; tentukan nama repo lebih dulu, lalu tambah domain di Vercel dan CNAME `kern` di Domainesia.
+- [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
+
+**Titik mulai berikutnya:** review visual kartu OG dan menu, lalu commit/push, deploy Vercel + CNAME `kern`, setelah itu foto + credits dan QA final.
+
+
+Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
 
 ## Status per folder
 
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Brief + design system selesai**: Next.js 16 + Tailwind 4, git lokal, commit `2b41897`; belum ada repo GitHub, menunggu logo |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Situs lengkap sampai metadata + menu mobile**; sisa foto, QA final, deploy; belum ada commit, belum ada repo GitHub |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -40,13 +95,14 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 
 ## 01-wellness (proyek aktif)
 
-- **Status:** scaffold Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`. Dokumen `BRIEF.md` + `DESIGN.md` sudah ada.
+- **Status:** fondasi halaman Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal tercatat `2b41897`. Dokumen `BRIEF.md` + `DESIGN.md` sudah ada; perubahan hari ini belum di-commit.
 - **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ilustratif ditampilkan sebagai "from"; kontak lewat form Formspree (Instagram ditunda sampai ada URL asli); foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
 - **Arah desain dikunci:** **The Quiet Clinic** (arah A) dengan disiplin struktur dari arah B. Palet bone `#f3f0e8` / ink `#1b1d19` / moss `#4a5545` + aksen lime `#d8f36b`; huruf **Fraunces + Manrope**; elemen khas **Movement screen** 4 pertanyaan.
-- **Logo:** wordmark + monogram; skill `logo-design` sudah terpasang, tinggal restart opencode. Hasil akhir harus SVG.
+- **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
-- **Belum ada:** logo, konten final, foto, repo GitHub.
-- **Langkah berikutnya:** restart opencode, pilih model vision, lalu jalankan skill `logo-design`.
+- **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), dan menu mobile.
+- **Belum selesai:** foto + `CREDITS.md`, QA Lighthouse/kontras/zoom, commit, repo GitHub, deploy + CNAME.
+- **Langkah berikutnya:** commit + push repo `kern-wellness`, deploy Vercel, tambah domain dan CNAME `kern`; setelah itu foto, credits, dan QA final.
 
 ## Alat & skills (opencode)
 
@@ -64,7 +120,7 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 
 ## Yang belum selesai
 
-1. **Tiga proyek demo belum dibangun.** Kartu di website pribadi saat ini hanya kartu, belum bisa diklik ke halaman studi kasus.
+1. **Tiga proyek demo belum selesai.** KERN sudah memiliki fondasi halaman; dua demo lainnya belum dibangun. Kartu di website pribadi belum dihubungkan ke studi kasus.
 2. **Profil Upwork belum dioptimalkan** (judul, overview, skill, rate, foto, verifikasi identitas masih tugas Belfa).
 3. **Form kontak belum diuji kirim sungguhan** setelah live; perlu satu pesan uji untuk memastikan masuk ke email.
 4. **Halaman studi kasus** untuk tiap demo belum ada (direncanakan di `BRIEF.md`: satu halaman per proyek).
@@ -74,7 +130,7 @@ Diperbarui: 23 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 
 1. Uji form kontak sekali, cek Google Analytics realtime.
 2. Rapikan profil Upwork pakai `_referensi/UPWORK-PROFIL.md`, lalu pasang link Upwork di website.
-3. Mulai **01-wellness**: kumpulkan brief + brand brief sekaligus, tawarkan 3 arah desain, pilih satu, lalu bangun logo + website (repo git + GitHub sendiri).
+3. Lanjut **01-wellness** dari checklist penutupan sesi: font, koreksi kit logo, movement screen, form demo, lalu kelengkapan situs dan publikasi. Brief dan arah logo sudah dipilih.
 4. Lanjut **02-jasa-lokal**, lalu **03-hospitality**.
 5. Setelah demo jadi: buat halaman studi kasus di website pribadi, hubungkan kartu ke halaman itu, perbarui `CASE-STUDY.md`, ulang Lighthouse dan review.
 6. Ganti foto/teks mana pun yang berubah, lalu commit dan push tiap bagian besar.

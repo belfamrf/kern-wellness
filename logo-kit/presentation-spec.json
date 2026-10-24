@@ -1,0 +1,49 @@
+{
+  "brand": "KERN",
+  "tagline": "Strength, measured.",
+  "brief": "A quiet Copenhagen strength and mobility studio for busy adults who want measured, human training rather than a loud gym or a clinical treatment setting.",
+  "adjectives": ["calm", "precise", "warm", "confident"],
+  "industry": "fitness",
+  "final": true,
+  "round": 2,
+  "status": "concept project — not a real business",
+  "concept": {
+    "name": "Calibrated K",
+    "masters": {
+      "symbol": "masters/kern-symbol.svg",
+      "symbolSmall": "masters/kern-symbol-small.svg",
+      "wordmark": "masters/kern-wordmark.svg",
+      "horizontal": "masters/kern-horizontal.svg",
+      "stacked": "masters/kern-stacked.svg"
+    },
+    "idea": "A stable K with a precise measure point at its centre.",
+    "rationale": [
+      "One vertical datum and two mirrored diagonals make the mark look built rather than drawn.",
+      "The point ties the identity to assessment before training, without a gym cliché.",
+      "The structure holds at favicon size and in one colour."
+    ]
+  },
+  "palette": {
+    "ink": "#1b1d19",
+    "bone": "#f3f0e8",
+    "moss": "#4a5545",
+    "signal": "#d8f36b"
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Manrope"
+  },
+  "presentation": {
+    "file": "kern-presentation.html",
+    "slides": [
+      "Cover — Strength, measured.",
+      "Brief — calm, precise, human",
+      "The mark — construction and the point",
+      "Lockups — horizontal, stacked, wordmark, clear space",
+      "Sizes and colour — 120 px minimum, four colour pairs",
+      "In use — header, app icon, door sign, workwear tag",
+      "Handover — files, checks, concept-project label"
+    ]
+  },
+  "testSheet": "kern-preview.html"
+}

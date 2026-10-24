@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="kern-title">
+  <title id="kern-title">KERN small-size symbol</title>
+  <g id="symbol">
+    <path fill="#1b1d19" d="M48 32h34v80h14l80-80h38l-80 96 80 96h-38l-80-80H82v80H48z"/>
+    <circle cx="128" cy="128" r="8" fill="#d8f36b"/>
+  </g>
+</svg>

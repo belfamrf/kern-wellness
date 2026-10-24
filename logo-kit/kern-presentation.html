@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KERN — identity presentation</title>
+<style>
+  @font-face{font-family:"Fraunces";src:url("fonts/fraunces-latin.woff2") format("woff2");font-weight:100 900;font-display:block}
+  @font-face{font-family:"Manrope";src:url("fonts/manrope-latin.woff2") format("woff2");font-weight:200 800;font-display:block}
+  :root{
+    --bone:#f3f0e8; --paper:#fbf9f4; --ink:#1b1d19; --soft:#555b50;
+    --moss:#4a5545; --line:#d8d2c4; --lime:#d8f36b;
+    --serif:"Fraunces",Georgia,serif; --sans:"Manrope",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#e6e3da;color:var(--ink);font-family:var(--sans)}
+  .page{display:flex;flex-direction:column;align-items:center;gap:28px;padding:28px 0 56px}
+  .slide{
+    position:relative;width:1280px;height:720px;flex:none;overflow:hidden;
+    background:var(--bone);padding:60px 64px 72px;
+  }
+  .slide--ink{background:var(--ink);color:var(--bone)}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin:0 0 18px}
+  .slide--ink .kicker{color:rgba(243,240,232,.62)}
+  h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;letter-spacing:-.018em}
+  h1{font-size:76px;line-height:.96}
+  h2{font-size:46px;line-height:1.04;max-width:18ch}
+  h3{font-size:24px;line-height:1.16;letter-spacing:-.01em}
+  p{margin:0}
+  .lead{font-size:18px;line-height:1.6;color:var(--soft);max-width:56ch}
+  .slide--ink .lead{color:rgba(243,240,232,.72)}
+  .foot{
+    position:absolute;left:64px;right:64px;bottom:26px;
+    display:flex;justify-content:space-between;font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--soft);border-top:1px solid var(--line);padding-top:12px;
+  }
+  .slide--ink .foot{color:rgba(243,240,232,.55);border-color:rgba(243,240,232,.18)}
+  .logo{display:block;height:auto;color:var(--ink)}
+  .logo--bone{color:var(--bone)}
+  .logo--moss{color:var(--moss)}
+  .logo--mono{--point:currentColor}
+  .label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--soft)}
+  .tabnum{font-variant-numeric:tabular-nums}
+
+  /* cover */
+  .cover-panel{position:absolute;inset:0 auto 0 0;width:512px;background:var(--ink);display:grid;place-items:center}
+  .cover-panel .logo{width:246px;height:auto}
+  .cover-body{position:absolute;top:0;bottom:0;left:576px;right:64px;display:flex;flex-direction:column;justify-content:center;gap:28px}
+  .cover-body h1{max-width:9ch}
+  .cover-meta{display:grid;gap:6px;font-size:12px;line-height:1.6;color:var(--soft);max-width:38ch}
+
+  /* generic two-column body */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px}
+  .stack{display:grid;gap:18px}
+
+  /* brief */
+  .brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px;border-top:1px solid var(--line);padding-top:24px}
+  .brief-grid p{font-size:15px;line-height:1.6;color:var(--soft);margin-top:10px}
+  .brief-quote{margin-top:52px;font-family:var(--serif);font-size:30px;line-height:1.3;color:var(--ink);max-width:30ch}
+
+  /* mark slide */
+  .mark-grid{display:grid;grid-template-columns:480px 1fr;gap:64px;align-items:center;margin-top:22px}
+  .diagram{width:440px;height:440px}
+  .mark-list{display:grid;gap:22px}
+  .mark-list li{display:grid;grid-template-columns:32px 1fr;gap:12px;font-size:15px;line-height:1.55;color:rgba(243,240,232,.78)}
+  .mark-list b{display:block;color:var(--bone);font-weight:700}
+  .mark-list span:first-child{font-size:11px;letter-spacing:.08em;color:var(--lime);padding-top:4px}
+
+  /* lockups */
+  .lockups{display:grid;gap:0;margin-top:28px;border-top:1px solid var(--line)}
+  .lockup-row{display:grid;grid-template-columns:150px 1fr 190px;align-items:center;gap:32px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .lockup-row .logo{max-width:100%;height:auto}
+  .lockup-row .meta{font-size:12px;line-height:1.55;color:var(--soft);text-align:right}
+  .clearspace{position:relative;display:inline-block;padding:20px;outline:1px dashed var(--line)}
+  .clearspace::after{content:"clear space";position:absolute;left:0;top:-18px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+
+  /* sizes + colour */
+  .use-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:32px}
+  .ramp{display:grid;gap:18px;align-content:start;align-items:end;border-top:1px solid var(--line);padding-top:20px}
+  .ramp-row{display:grid;grid-template-columns:1fr 96px;align-items:end;gap:20px}
+  .ramp-row .label{text-align:right;padding-bottom:4px}
+  .swatches{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+  .swatch{border:1px solid var(--line);padding:20px;display:grid;gap:12px;justify-items:center;min-height:132px;align-content:center}
+  .swatch--ink{background:var(--ink);border-color:var(--ink)}
+  .swatch--moss{background:var(--moss);border-color:var(--moss)}
+  .swatch .cap{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .swatch--ink .cap,.swatch--moss .cap{color:rgba(243,240,232,.7)}
+
+  /* in use */
+  .use-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+  .mock{border:1px solid var(--line);background:var(--paper);height:280px;display:grid;place-items:center;padding:18px;position:relative}
+  .mock .cap{position:absolute;left:14px;bottom:12px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+  .bar{width:100%;border:1px solid var(--line);background:var(--bone);padding:16px 14px;display:grid;gap:14px}
+  .bar .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .bar .top .logo{width:78px}
+  .bar .nav{display:flex;gap:10px;font-size:9px;color:var(--soft)}
+  .pill{background:var(--lime);color:var(--ink);font-size:9px;font-weight:700;padding:6px 10px;letter-spacing:.04em}
+  .appicon{width:120px;height:120px;border-radius:27px;background:var(--ink);display:grid;place-items:center}
+  .sign{width:190px;height:150px;background:var(--moss);display:grid;place-items:center;gap:10px;padding:18px}
+  .sign .logo{width:104px}
+  .sign .place{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,240,232,.7)}
+  .tag{width:150px;height:190px;background:var(--bone);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px}
+  .tag .logo{width:92px}
+  .tag .rule{width:40px;height:1px;background:var(--line)}
+  .tag .size{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+
+  /* handover */
+  .hand-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;margin-top:44px}
+  .filelist{display:grid;gap:0;border-top:1px solid rgba(243,240,232,.18)}
+  .filelist div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:13px 0;border-bottom:1px solid rgba(243,240,232,.18);font-size:13px;line-height:1.5;color:rgba(243,240,232,.72)}
+  .filelist code{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--bone)}
+  .next{display:grid;gap:16px;padding-top:4px}
+  .next p{font-size:14px;line-height:1.6;color:rgba(243,240,232,.72)}
+  .next b{color:var(--bone)}
+  .stamp{margin-top:36px;display:inline-block;border:1px solid var(--lime);color:var(--lime);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px}
+  
+</style>
+</head>
+<body>
+<div class="page">
+
+  <section class="slide">
+    <div class="cover-panel">
+      <img class="logo" src="exports/kern-symbol-white.svg" width="256" height="256" alt="KERN symbol">
+    </div>
+    <div class="cover-body">
+      <p class="kicker">Identity · final</p>
+      <h1>Strength,<br>measured.</h1>
+      <div class="cover-meta">
+        <span>KERN — strength and mobility studio, Copenhagen.</span>
+        <span>Logo presentation · 24 October 2026 · concept project</span>
+      </div>
+    </div>
+    <div class="foot"><span>KERN — identity</span><span>01 / 07</span></div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">01 / Brief</p>
+    <h2>A quiet room, measured work.</h2>
+    <p class="lead" style="margin-top:20px">KERN is a strength and mobility studio for busy adults who want a clear starting point, not a louder gym and not a clinical treatment.</p>
+    <div class="brief-grid">
+      <div>
+        <p class="label">Calm</p>
+        <p>Bone walls, one small signal of action, and time to pay attention.</p>
+      </div>
+      <div>
+        <p class="label">Precise</p>
+        <p>Assessment before training. Numbers treated as measurements, not decoration.</p>
+      </div>
+      <div>
+        <p class="label">Human</p>
+        <p>Small groups, plain language, no performance theatre.</p>
+      </div>
+    </div>
+    <p class="brief-quote">The logo had to feel like a measurement taken calmly, not a badge earned.</p>
+    <div class="foot"><span>KERN — identity</span><span>02 / 07</span></div>
+  </section>
+
+  <section class="slide slide--ink">
+    <p class="kicker">02 / The mark</p>
+    <h2 style="max-width:16ch">A K built on a datum.</h2>
+    <div class="mark-grid">
+      <svg class="diagram" viewBox="0 0 256 256" role="img" aria-label="Construction of the calibrated K, with a lime point at the centre">
+        <g stroke="rgba(243,240,232,.22)" stroke-width="0.6" fill="none">
+          <path d="M48 32h166v192H48z" stroke-dasharray="4 4"/>
+          <path d="M48 128h166M128 32v192"/>
+          <circle cx="128" cy="128" r="34" stroke-dasharray="3 4"/>
+          <path d="M128 128 205 62M128 128 205 194"/>
+        </g>
+        <g fill="#f3f0e8">
+          <path d="M48 32h32v80l96-80h38l-96 96 96 96h-38l-96-80v80H48z"/>
+        </g>
+        <circle cx="128" cy="128" r="7" fill="#d8f36b"/>
+        <g fill="rgba(243,240,232,.55)" font-family="Manrope,Arial,sans-serif" font-size="6" letter-spacing="1">
+          <text x="52" y="26">192 units</text>
+          <text x="188" y="252">166 units</text>
+        </g>
+      </svg>
+      <div>
+        <ul class="mark-list" style="list-style:none;padding:0;margin:0">
+          <li><span>01</span><span><b>One vertical datum.</b>The stem is the measure line. Every curve starts from it.</span></li>
+          <li><span>02</span><span><b>Two measured diagonals.</b>Each arm mirrors the other, so the mark reads as built rather than drawn.</span></li>
+          <li><span>03</span><span><b>One point.</b>A lime bead sits in the open notch, where an assessment would begin.</span></li>
+        </ul>
+        <p style="margin-top:26px;font-size:12px;line-height:1.6;color:rgba(243,240,232,.5);max-width:42ch">Construction diagram, not to scale. The point is a detail of the mark, not a recognition device: it is visible on ink and moss, and stays quiet on bone.</p>
+      </div>
+    </div>
+    <div class="foot"><span>KERN — identity</span><span>03 / 07</span></div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">03 / Lockups</p>
+    <h2 style="max-width:none">One mark, three lockups.</h2>
+    <div class="lockups">
+      <div class="lockup-row">
+        <span class="label">Horizontal</span>
+        <div class="clearspace">
+          <img class="logo" style="width:300px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="KERN horizontal lockup">
+        </div>
+        <span class="meta">Default. Header, letterhead, signage.<br>Minimum 120 px wide.<br>Clear space: 4 × point diameter.</span>
+      </div>
+      <div class="lockup-row">
+        <span class="label">Stacked</span>
+        <img class="logo" style="width:104px" src="exports/kern-stacked-black.svg" width="520" height="442" alt="KERN stacked lockup">
+        <span class="meta">Square spaces, labels, social avatars.<br>Minimum 72 px wide.</span>
+      </div>
+      <div class="lockup-row" style="border-bottom:0">
+        <span class="label">Wordmark</span>
+        <img class="logo" style="width:260px" src="exports/kern-wordmark-black.svg" width="532" height="192" alt="KERN wordmark">
+        <span class="meta">When the point is not needed.<br>Never set the wordmark in type.</span>
+      </div>
+    </div>
+    <div class="foot"><span>KERN — identity</span><span>04 / 07</span></div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">04 / Sizes and colour</p>
+    <h2 style="max-width:none">Small, flat, legible.</h2>
+    <p class="lead" style="margin-top:18px;max-width:50ch">Below 24 px, the point is dropped: use the one-colour or small-size file. Never rebuild the wordmark by typing KERN.</p>
+    <div class="use-grid">
+      <div class="ramp">
+        <div class="ramp-row">
+          <img class="logo" style="width:320px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="Horizontal lockup at 320 pixels">
+          <span class="label tabnum">320 px</span>
+        </div>
+        <div class="ramp-row">
+          <img class="logo" style="width:200px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="Horizontal lockup at 200 pixels">
+          <span class="label tabnum">200 px</span>
+        </div>
+        <div class="ramp-row">
+          <img class="logo" style="width:120px" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="Horizontal lockup at 120 pixels, the minimum">
+          <span class="label tabnum">120 px · min</span>
+        </div>
+        <div class="ramp-row">
+          <span style="display:flex;align-items:flex-end;gap:22px">
+            <img class="logo" style="width:32px" src="exports/kern-symbol-black.svg" width="256" height="256" alt="Symbol at 32 pixels">
+            <img class="logo" style="width:16px" src="masters/kern-symbol-small.svg" width="256" height="256" alt="Small-size symbol at 16 pixels">
+          </span>
+          <span class="label tabnum">32 · 16 px</span>
+        </div>
+      </div>
+      <div>
+        <div class="swatches">
+          <div class="swatch">
+            <img class="logo" style="width:88px" src="exports/kern-symbol-black.svg" width="256" height="256" alt="">
+            <span class="cap">Ink on bone</span>
+          </div>
+          <div class="swatch swatch--ink">
+            <img class="logo" style="width:88px" src="exports/kern-symbol-white.svg" width="256" height="256" alt="">
+            <span class="cap">Bone on ink</span>
+          </div>
+          <div class="swatch swatch--moss">
+            <img class="logo" style="width:88px" src="exports/kern-symbol-white.svg" width="256" height="256" alt="">
+            <span class="cap">Bone on moss</span>
+          </div>
+          <div class="swatch">
+            <img class="logo" style="width:88px" src="exports/kern-symbol-mono-4a5545.svg" width="256" height="256" alt="">
+            <span class="cap">One colour</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span>KERN — identity</span><span>05 / 07</span></div>
+  </section>
+
+  <section class="slide">
+    <p class="kicker">05 / In use</p>
+    <h2>Quiet at every touchpoint.</h2>
+    <div class="use-row">
+      <div class="mock">
+        <div class="bar">
+          <div class="top">
+            <img class="logo" src="exports/kern-horizontal-black.svg" width="820" height="256" alt="">
+            <span class="pill">Book intro</span>
+          </div>
+          <div class="nav"><span>Programs</span><span>Method</span><span>Studio</span></div>
+        </div>
+        <span class="cap">Website header</span>
+      </div>
+      <div class="mock">
+        <div class="appicon">
+          <img src="exports/kern-symbol-app-icon.svg" width="256" height="256" alt="" style="width:120px;height:120px">
+        </div>
+        <span class="cap">App icon</span>
+      </div>
+      <div class="mock">
+        <div class="sign">
+          <img class="logo" src="exports/kern-stacked-white.svg" width="520" height="442" alt="">
+          <span class="place">Nørrebro</span>
+        </div>
+        <span class="cap">Door sign</span>
+      </div>
+      <div class="mock">
+        <div class="tag">
+          <img class="logo" src="exports/kern-wordmark-black.svg" width="532" height="192" alt="">
+          <span class="rule"></span>
+          <span class="size">Training · Copenhagen</span>
+        </div>
+        <span class="cap">Workwear tag</span>
+      </div>
+    </div>
+    <p style="margin-top:28px;font-size:12px;line-height:1.6;color:var(--soft);max-width:70ch">Mockups are flat colour studies, not photographs. No real address, coach name, or contact detail is shown, because KERN is a concept project.</p>
+    <div class="foot"><span>KERN — identity</span><span>06 / 07</span></div>
+  </section>
+
+  <section class="slide slide--ink">
+    <p class="kicker">06 / Handover</p>
+    <h2 style="max-width:14ch">What is in the kit.</h2>
+    <div class="hand-grid">
+      <div class="filelist">
+        <div><code>masters/</code><span>Five outlined SVGs: symbol, small symbol, wordmark, horizontal, stacked.</span></div>
+        <div><code>exports/</code><span>Ink, bone, and one-colour versions as SVG and PNG, plus favicons, app icons, and a web manifest.</span></div>
+        <div><code>brand-guidelines.md</code><span>Clear space, minimum sizes, colour pairs, and usage rules.</span></div>
+        <div><code>kern-preview.html</code><span>Test sheet for small sizes, reversed artwork, and misuse.</span></div>
+      </div>
+      <div class="next">
+        <p><b>Before launch.</b> Run a trademark search for KERN in the relevant class. Replace the concept-project label wherever the mark is shown in public.</p>
+        <p><b>Check in place.</b> Look at the 16 px favicon and the 120 px header on a real screen, light and dark, before signing off.</p>
+        <p><b>Do not rebuild.</b> The wordmark is outlined geometry. Type it in Fraunces or Manrope and it is no longer the logo.</p>
+        <span class="stamp">Concept project · not a real business</span>
+      </div>
+    </div>
+    <div class="foot"><span>KERN — identity</span><span>07 / 07</span></div>
+  </section>
+
+</div>
+</body>
+</html>
