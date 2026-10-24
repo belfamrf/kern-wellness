@@ -272,7 +272,8 @@ Latar ink, teks bone. Simbol KERN, baris kejujuran **"KERN is a concept project.
 
 ## Publication
 
-- URL produksi: `https://kern.belfamuhammad.com`, subdomain dari `belfamuhammad.com`. DNS tetap di Domainesia: tambah satu record CNAME `kern` dengan target yang ditampilkan Vercel saat domain ditambahkan; jangan ubah nameserver.
+- URL produksi: `https://kern.belfamuhammad.com`, subdomain dari `belfamuhammad.com`. DNS tetap di Domainesia: CNAME `kern` → `3620ed26aa017997.vercel-dns-017.com`; jangan ubah nameserver.
+- Project Vercel `kern-wellness` terhubung ke repo GitHub. URL `kern-wellness.vercel.app` memakai Vercel Authentication (hanya preview); proteksi memakai `all_except_custom_domains`, jadi domain kustom publik setelah DNS aktif.
 - `metadataBase` dan canonical memakai URL itu; `sitemap.xml` dan `robots.txt` dibuat dari konstanta di `src/lib/site.ts`. Satu halaman, satu URL di sitemap.
 - OG image 1200×630 di `/brand/kern-og.png`: latar ink, wordmark bone, headline Fraunces, titik lime. Dibuat oleh `npm run og` (`scripts/build-og.mjs`) memakai font brand dari `logo-kit/fonts/`; jalankan ulang bila teks atau URL di kartu berubah. Twitter memakai `summary_large_image`.
 - Data terstruktur hanya `WebSite` + kreator. Tidak ada `LocalBusiness`, alamat, telepon, atau harga di schema karena KERN adalah concept project.

@@ -33,24 +33,25 @@ Form berjalan dalam mode demo tanpa konfigurasi tambahan. Untuk mengaktifkan pen
 
 ## Deploy
 
-Repo: <https://github.com/belfamrf/kern-wellness>. Login Vercel sekali, lalu deploy dari folder ini:
+Repo: <https://github.com/belfamrf/kern-wellness>. Project Vercel: `kern-wellness` (scope `belfas-projects-e2cecb6e`), sudah terhubung ke repo sehingga push ke `main` memicu deploy produksi.
+
+Deploy ulang dari folder ini:
 
 ```bash
-npx vercel login
 npx vercel --prod
 ```
 
-Alternatifnya, import repo di dashboard Vercel. Setelah project ada, tambahkan domain dan CNAME seperti di atas.
+`https://kern-wellness.vercel.app` memakai Vercel Authentication (hanya untuk preview). Domain kustom tidak terkena proteksi itu.
 
 ## Domain
 
-Rencana produksi: `https://kern.belfamuhammad.com` (subdomain dari `belfamuhammad.com`). Setelah project Vercel dibuat:
+Domain `https://kern.belfamuhammad.com` sudah ditambahkan ke project dan menunggu DNS. Di Domainesia, tambahkan:
 
-1. Tambah domain di Vercel, salin target CNAME yang ditampilkan.
-2. Di Domainesia, tambah CNAME `kern` dengan target tersebut.
-3. Jangan ubah nameserver.
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `kern` | `3620ed26aa017997.vercel-dns-017.com` |
 
-Ubah URL hanya di `src/lib/site.ts`, lalu jalankan `npm run og` bila teks kartu berubah.
+Jangan ubah nameserver. Setelah record aktif, jalankan `npx vercel domains verify kern.belfamuhammad.com --strict`. Ubah URL hanya di `src/lib/site.ts`, lalu `npm run og` bila teks kartu berubah.
 
 ## Aset logo
 
