@@ -6,6 +6,7 @@ import dumbbells from "@/assets/photos/dumbbells.jpg";
 import { BookingForm } from "@/components/booking-form";
 import { MobileMenu } from "@/components/mobile-menu";
 import { MovementScreen } from "@/components/movement-screen";
+import { PageMotion } from "@/components/page-motion";
 
 const principles = [
   {
@@ -63,6 +64,7 @@ export default function Home() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
+      <PageMotion />
 
       <header className="site-header">
         <div className="site-shell header-inner">
@@ -89,6 +91,7 @@ export default function Home() {
           </a>
           <MobileMenu />
         </div>
+        <span className="scroll-progress" aria-hidden="true" />
       </header>
 
       <main id="main-content">
@@ -96,7 +99,16 @@ export default function Home() {
           <div className="site-shell hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Strength &amp; mobility · Nørrebro, Copenhagen</p>
-              <h1>Strength, measured.</h1>
+              <h1>
+                <span className="hero-line">
+                  <span>Strength,</span>
+                </span>{" "}
+                <span className="hero-line">
+                  <span>
+                    measured<span className="stop">.</span>
+                  </span>
+                </span>
+              </h1>
               <p className="hero-lead">
                 Training for people who want to feel stronger, move with more ease,
                 and leave the noise of a crowded gym behind.
@@ -143,14 +155,14 @@ export default function Home() {
               <span>Principles</span>
             </div>
             <div className="section-content">
-              <h2 id="principles-title">A quieter way to get stronger.</h2>
-              <p className="section-lead">
+              <h2 id="principles-title" data-reveal>A quieter way to get stronger.</h2>
+              <p className="section-lead" data-reveal>
                 Good training does not need to be loud. It needs a clear starting point,
                 a plan you understand, and enough room to pay attention.
               </p>
               <div className="principles-list">
                 {principles.map((principle) => (
-                  <article className="principle-item" key={principle.number}>
+                  <article className="principle-item" key={principle.number} data-reveal>
                     <span className="item-number">{principle.number}</span>
                     <h3>{principle.title}</h3>
                     <p>{principle.text}</p>
@@ -168,14 +180,14 @@ export default function Home() {
               <span>Programs</span>
             </div>
             <div className="section-content">
-              <h2 id="programs-title">Choose a starting point.</h2>
-              <p className="section-lead">
+              <h2 id="programs-title" data-reveal>Choose a starting point.</h2>
+              <p className="section-lead" data-reveal>
                 Every format begins with an intro and a conversation about what you need.
                 Prices shown are illustrative for this concept project.
               </p>
               <div className="program-list">
                 {programs.map((program) => (
-                  <a className="program-row" href="#booking" key={program.number}>
+                  <a className="program-row" href="#booking" key={program.number} data-reveal>
                     <span className="item-number">{program.number}</span>
                     <span className="program-main">
                       <span className="program-title">{program.title}</span>
@@ -198,12 +210,14 @@ export default function Home() {
               <span>Screen</span>
             </div>
             <div className="section-content">
-              <h2 id="screen-title">Find your starting point.</h2>
-              <p className="section-lead">
+              <h2 id="screen-title" data-reveal>Find your starting point.</h2>
+              <p className="section-lead" data-reveal>
                 Four questions about how you sit, move, and train. The answer is a
                 preference guide, not a medical assessment.
               </p>
-              <MovementScreen />
+              <div data-reveal>
+                <MovementScreen />
+              </div>
             </div>
           </div>
         </section>
@@ -215,8 +229,8 @@ export default function Home() {
               <span>Method</span>
             </div>
             <div className="section-content method-content">
-              <h2 id="method-title">A plan that makes sense.</h2>
-              <p className="section-lead">
+              <h2 id="method-title" data-reveal>A plan that makes sense.</h2>
+              <p className="section-lead" data-reveal>
                 The first twelve weeks give you time to learn, build, and review without
                 rushing the work.
               </p>
@@ -227,7 +241,7 @@ export default function Home() {
                   ["03", "Load", "Weeks 7–10"],
                   ["04", "Review", "Weeks 11–12"],
                 ].map(([number, title, weeks]) => (
-                  <div className="method-step" role="listitem" key={number}>
+                  <div className="method-step" role="listitem" key={number} data-reveal>
                     <span className="method-dot" />
                     <span className="item-number">{number}</span>
                     <strong>{title}</strong>
@@ -243,9 +257,9 @@ export default function Home() {
           <div className="site-shell studio-grid">
             <div>
               <p className="eyebrow eyebrow-light">05 / Studio</p>
-              <h2 id="studio-title">Room to pay attention.</h2>
+              <h2 id="studio-title" data-reveal>Room to pay attention.</h2>
             </div>
-            <div className="studio-copy">
+            <div className="studio-copy" data-reveal>
               <p>
                 KERN is a calm training studio in Nørrebro, Copenhagen. Small groups,
                 clear plans, and no performance theatre.
@@ -257,7 +271,7 @@ export default function Home() {
               </div>
             </div>
             <div className="studio-photos">
-              <figure className="studio-photo studio-photo-wide">
+              <figure className="studio-photo studio-photo-wide" data-reveal="image">
                 <Image
                   src={benches}
                   alt="Two weight training benches in a dim training room."
@@ -267,7 +281,7 @@ export default function Home() {
                 />
                 <figcaption>The room</figcaption>
               </figure>
-              <figure className="studio-photo studio-photo-tall">
+              <figure className="studio-photo studio-photo-tall" data-reveal="image">
                 <Image
                   src={dumbbells}
                   alt="A rack of dumbbells."
@@ -289,7 +303,7 @@ export default function Home() {
           <div className="site-shell section-grid">
             <div className="section-index"><span>06</span><span>FAQ</span></div>
             <div className="section-content">
-              <h2 id="faq-title">Before you start.</h2>
+              <h2 id="faq-title" data-reveal>Before you start.</h2>
               {[
                 ["Can I start as a beginner?", "Yes. The intro helps establish your starting point, including any previous training experience."],
                 ["What should I wear?", "Comfortable clothes you can move in and clean training shoes."],
@@ -297,7 +311,7 @@ export default function Home() {
                 ["What if I miss a session?", "Scheduling and cancellation terms would be discussed at the intro. This concept project does not accept real bookings."],
                 ["Is this rehabilitation?", "No. KERN is a strength and mobility training concept. For pain or injury, speak with a qualified clinician."],
               ].map(([question, answer]) => (
-                <details className="faq-item" key={question}>
+                <details className="faq-item" key={question} data-reveal>
                   <summary>{question}</summary>
                   <p>{answer}</p>
                 </details>
@@ -313,12 +327,14 @@ export default function Home() {
               <span>Booking</span>
             </div>
             <div className="section-content booking-content">
-              <h2 id="booking-title">Start with a conversation.</h2>
-              <p className="section-lead">
+              <h2 id="booking-title" data-reveal>Start with a conversation.</h2>
+              <p className="section-lead" data-reveal>
                 The intro is free and takes 30 minutes. Tell us where you are starting,
                 and we will suggest a format. No obligation.
               </p>
-              <BookingForm />
+              <div data-reveal>
+                <BookingForm />
+              </div>
               <p className="concept-note">
                 Concept project — KERN is not a real business. This demo form does not
                 send real bookings.

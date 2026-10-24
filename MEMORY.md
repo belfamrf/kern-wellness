@@ -2,6 +2,15 @@
 
 Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
 
+## Pembaruan terakhir — 24 Oktober 2026 (motion terlihat)
+
+- **Masalah:** pengguna merasa situs statis. Penyebab: reveal lama memakai CSS `animation-timeline: view()` yang tidak berjalan di iOS Safari dan “scrub” mengikuti scroll di Chrome; amplitudo 16px terlalu halus; hover tidak ada di HP; animasi hero selesai sebelum dilihat.
+- **Perbaikan:** `src/components/page-motion.tsx` memakai IntersectionObserver berbasis waktu. Reveal 28px/650ms, stagger 70ms (maks 280ms); foto clip-path 8% + scale 1,05/850ms. Hero: dua baris headline dari mask (900ms), simbol K digambar (`clip-path`, 1000ms), foto settle 1400ms. Bar progres 2px ink di header. Garis Method tumbuh di desktop dan mobile.
+- **Aman:** kelas reveal hanya ditambahkan JS; tanpa JS konten terlihat. Reduced motion tidak menambahkan kelas dan mematikan animasi. `scroll-progress` dekoratif, tidak mengubah layout.
+- **QA:** opacity row 0,32 @80ms → 0,96 @340ms → 1 @940ms (benar-benar bergerak); progres 0,24 → 1; garis Method mencapai scale 1; 320/375/1440 tanpa overflow; reduced motion `rowPending=false`, hero animation none; Lighthouse **95 / 100 / 100 / 100**, CLS 0.
+- **Video review:** `C:\Users\USER\Downloads\kern-motion\motion-1440.mp4` (10 s) dan `motion-375.mp4` (12 s), direkam dari build lokal via CDP + ffmpeg.
+- **Belum:** pengguna menonton video/merasakan motion di HP, copy review, pembersihan file sisa.
+
 ## Pembaruan terakhir — 24 Oktober 2026 (foto, motion, credits)
 
 - **Kritik pengguna:** halaman terasa basic, hanya teks dengan logo dan palet. Respons: tiga foto, motion CSS, dan detail visual yang masih sesuai arah “quiet clinic”.
@@ -66,6 +75,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - [x] **Metadata publikasi**: URL `https://kern.belfamuhammad.com`, canonical, OG image 1200×630, sitemap/robots, dan `WebSite` JSON-LD sudah terpasang dan diverifikasi build.
 - [x] **Lighthouse mobile** 24 Okt: **95–96** Performance, 100 Accessibility, 100 Best Practices, 100 SEO. Speed Index turun ke 0,8 s setelah foto; LCP simulasi 2,8–2,9 s, observed 128 ms.
 - [x] **QA manual** — 720 px (zoom 200%), reduced motion, menu, form, dan `/credits` diuji.
+- [x] **Motion terlihat** — IO time-based, hero mask/K draw, progres header, timeline dua breakpoint; video review tersedia.
 - [ ] **Copy review** bahasa Inggris dan konsistensi klaim.
 - [ ] **Bersihkan file sisa** di akar (`kern-concept-*`, `logo-renders/`) setelah izin pengguna.
 - [ ] **Review visual pengguna** terhadap tiga foto dan crop-nya.

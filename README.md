@@ -23,6 +23,7 @@ npm run og       # render ulang kartu OG 1200x630
 - `src/components/movement-screen.tsx` — movement screen 4 pertanyaan.
 - `src/components/booking-form.tsx` — form booking demo + validasi.
 - `src/components/mobile-menu.tsx` — menu di bawah 801px.
+- `src/components/page-motion.tsx` — reveal saat scroll, animasi hero, dan bar progres header.
 - `src/assets/photos/` — tiga foto berlisensi (sumber dan lisensi dicatat di `CREDITS.md`).
 - `src/lib/site.ts` — URL produksi dan metadata yang dipakai bersama.
 - `src/app/sitemap.ts`, `src/app/robots.ts` — SEO.

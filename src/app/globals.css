@@ -66,6 +66,18 @@ a {
   background: var(--bone);
 }
 
+.scroll-progress {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -343,6 +355,21 @@ h3 {
   color: var(--ink-soft);
 }
 
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.hero-line > span {
+  display: block;
+}
+
+.hero-copy .stop {
+  color: var(--signal);
+}
+
 .hero-mark {
   position: relative;
   min-height: 360px;
@@ -404,16 +431,12 @@ h3 {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-copy > * {
+  .hero-copy > :not(h1) {
     animation: rise-in 700ms var(--ease) both;
   }
 
   .hero-copy > :nth-child(1) {
     animation-delay: 40ms;
-  }
-
-  .hero-copy > :nth-child(2) {
-    animation-delay: 120ms;
   }
 
   .hero-copy > :nth-child(3) {
@@ -428,14 +451,31 @@ h3 {
     animation-delay: 340ms;
   }
 
+  .hero-line > span {
+    animation: line-up 900ms var(--ease) both;
+  }
+
+  .hero-line:nth-child(1) > span {
+    animation-delay: 40ms;
+  }
+
+  .hero-line:nth-child(2) > span {
+    animation-delay: 140ms;
+  }
+
   .hero-mark {
     animation: fade-in 900ms var(--ease) both;
     animation-delay: 120ms;
   }
 
+  .hero-photo {
+    animation: photo-settle 1400ms var(--ease) both;
+  }
+
   .hero-symbol {
-    animation: symbol-in 900ms var(--ease) both;
-    animation-delay: 320ms;
+    animation:
+      symbol-in 900ms var(--ease) 320ms both,
+      symbol-draw 1000ms var(--ease) 320ms both;
   }
 }
 
@@ -447,6 +487,33 @@ h3 {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes line-up {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes photo-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes symbol-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
   }
 }
 
@@ -623,6 +690,11 @@ section[id] {
   height: 1px;
   background: var(--ink);
   transform-origin: left;
+  transition: transform 700ms var(--ease);
+}
+
+.method-line.line-pending::before {
+  transform: scaleX(0);
 }
 
 .method-step {
@@ -654,42 +726,33 @@ section[id] {
   font-size: 0.8rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .section-content > h2,
-    .section-content > .section-lead,
-    .principle-item,
-    .program-row,
-    .method-step,
-    .studio-copy,
-    .studio-photo,
-    .booking-form {
-      animation: rise-in both linear;
-      animation-duration: auto;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
-    }
-  }
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(28px);
 }
 
-@media (min-width: 801px) and (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .method-line::before {
-      animation: line-grow both linear;
-      animation-duration: auto;
-      animation-timeline: view();
-      animation-range: entry 10% entry 80%;
-    }
-  }
+.reveal-pending.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 650ms var(--ease),
+    transform 650ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-@keyframes line-grow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+.reveal-pending.reveal-image {
+  opacity: 1;
+  clip-path: inset(8% 0 8% 0);
+  transform: scale(1.05);
+}
+
+.reveal-pending.reveal-image.is-visible {
+  clip-path: inset(0);
+  transform: none;
+  transition:
+    clip-path 850ms var(--ease),
+    transform 850ms var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .studio-section {
@@ -1407,7 +1470,23 @@ textarea:focus-visible {
     gap: 0;
     margin-top: 48px;
     border-top: 0;
-    border-left: 1px solid var(--ink);
+    border-left: 1px solid transparent;
+  }
+
+  .method-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
+    width: 1px;
+    background: var(--ink);
+    transform-origin: top;
+    transition: transform 700ms var(--ease);
+  }
+
+  .method-line.line-pending::after {
+    transform: scaleY(0);
   }
 
   .method-step {
@@ -1507,5 +1586,24 @@ textarea:focus-visible {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .hero-line > span,
+  .hero-photo,
+  .hero-symbol {
+    animation: none !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .reveal-pending {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .method-line.line-pending::before,
+  .method-line.line-pending::after {
+    transform: none !important;
   }
 }

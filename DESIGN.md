@@ -245,13 +245,14 @@ Halaman `/credits`: wordmark, judul, daftar tiga foto dengan fotografer, tautan 
 ## Motion
 
 - Ease tunggal: `cubic-bezier(0.22, 1, 0.36, 1)`.
-- Hero load: stagger 40–340ms, durasi 700–900ms, naik 16px; simbol K muncul dengan scale 0.92 → 1.
-- Scroll reveal memakai CSS `animation-timeline: view()` (entry 0–55%), hanya bila didukung dan `prefers-reduced-motion: no-preference`. Browser tanpa dukungan tetap menampilkan konten.
-- Garis timeline Method tumbuh `scaleX(0 → 1)` saat masuk viewport, desktop saja.
-- Movement screen: step 260ms, hasil 320ms, translate 8px.
+- Hero load: dua baris headline naik dari mask (900ms, delay 40/140ms), simbol K digambar lewat `clip-path` (1000ms), foto hero settle dari scale 1,06 (1400ms). Eyebrow/lead/CTA naik 16px dengan stagger 40–340ms.
+- Scroll reveal memakai `IntersectionObserver` berbasis waktu: naik 28px/650ms, stagger 70ms (maks 280ms), sekali per elemen. Foto Studio memakai clip-path 8% + scale 1,05/850ms. Tidak memakai `animation-timeline`, jadi berjalan di Safari/Chrome/Firefox dan tidak “scrub” mengikuti scroll.
+- Bar progres 2px ink di bawah header mengikuti posisi baca (langsung, tanpa animasi).
+- Garis timeline Method tumbuh 700ms di desktop (`scaleX`) dan mobile (`scaleY`), dipicu saat masuk viewport.
+- Movement screen: step 260ms, hasil 320ms, translate 8px; progress bar tetap 200ms.
 - Hover: panah program bergeser 4px (200ms); foto Studio scale 1.025 dan kontras naik (700ms), hanya di perangkat hover.
 - Tidak ada parallax, scroll hijacking, Lenis, cursor effect, atau animasi loop.
-- `prefers-reduced-motion`: semua animasi dan transisi menjadi instan, `scroll-behavior: auto`; konten tidak disembunyikan.
+- `prefers-reduced-motion`: semua animasi dan transisi menjadi instan, `scroll-behavior: auto`; kelas reveal tidak pernah ditambahkan sehingga konten tetap terlihat.
 - Ikon menu berubah garis → X; hanya transform 180ms, tanpa animasi panel.
 
 ## Accessibility
@@ -264,7 +265,7 @@ Halaman `/credits`: wordmark, judul, daftar tiga foto dengan fotografer, tautan 
 - Form: label eksplisit, error tekstual, bukan warna saja, target ≥44px.
 - Alt text deskriptif; foto dekoratif `alt=""`; simbol hero memakai `role="img"` dan label. Dua foto Studio punya alt dan caption; kredit di `/credits`.
 - Tidak ada teks lime di bone; kontras dicek sebelum build. Teks kredit Studio memakai bone penuh di atas moss.
-- Animasi tidak boleh menyembunyikan konten dari pembaca layar atau pengguna reduced-motion.
+- Animasi tidak boleh menyembunyikan konten dari pembaca layar atau pengguna reduced-motion. Kelas reveal hanya ditambahkan oleh JS; tanpa JS seluruh konten tampil.
 - Hormati `prefers-reduced-motion` dan zoom 200%.
 
 ## Performance
