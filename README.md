@@ -31,6 +31,17 @@ npm run og       # render ulang kartu OG 1200x630
 
 Form berjalan dalam mode demo tanpa konfigurasi tambahan. Untuk mengaktifkan pengiriman sungguhan, isi `NEXT_PUBLIC_FORMSPREE_ENDPOINT` di `.env.local` dengan endpoint Formspree. Variabel ini publik dan tidak boleh berisi rahasia. Jangan mengisi endpoint sebelum ada penerima yang disetujui.
 
+## Deploy
+
+Repo: <https://github.com/belfamrf/kern-wellness>. Login Vercel sekali, lalu deploy dari folder ini:
+
+```bash
+npx vercel login
+npx vercel --prod
+```
+
+Alternatifnya, import repo di dashboard Vercel. Setelah project ada, tambahkan domain dan CNAME seperti di atas.
+
 ## Domain
 
 Rencana produksi: `https://kern.belfamuhammad.com` (subdomain dari `belfamuhammad.com`). Setelah project Vercel dibuat:

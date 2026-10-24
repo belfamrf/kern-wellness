@@ -10,7 +10,9 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Kesalahan yang ditemukan dan diperbaiki:** `scripts/build-og.mjs` sempat rusak karena edit PowerShell `Get-Content`/`Set-Content` tanpa UTF-8; teks "Nørrebro" menjadi "NA,rrebro" dan "·" menjadi karakter rusak di kartu OG. Skrip ditulis ulang UTF-8, kartu dirender ulang, dan teks diverifikasi lewat DOM (`ø` dan `·` ada, tanpa U+FFFD).
 - **Verifikasi:** lint/build lolos. CDP menguji 320/375/414/768/800/801/1440 px: tanpa overflow horizontal, header tidak tumpang tindih. Menu diuji buka/tutup, Escape, Tab ke tautan pertama, klik tautan (fokus ke H2), klik luar, dan resize; tanpa exception console. Screenshot di `%TEMP%/opencode/kern-menu/{375-closed,375-open,768-open,1440-closed}.png`.
 - **Docs drift diperbaiki:** `DESIGN.md` sebelumnya menyebut breakpoint 768px, focus trap, reveal 500/600ms, dua foto studio, dan nav footer yang tidak ada. Sekarang disesuaikan dengan implementasi. README default create-next-app diganti README proyek.
-- **Belum:** foto + `CREDITS.md`, Lighthouse/kontras/zoom, review visual OG/menu, deploy. Vercel CLI belum terpasang/terautentikasi; GitHub `gh` sudah login sebagai `belfamrf`.
+- **Repo & commit:** commit `541ad4e` (“feat: build KERN concept site”, 117 file) sudah di-push ke repo publik **https://github.com/belfamrf/kern-wellness**, branch `main` sinkron. Delapan file konsep di akar dan `logo-renders/` sengaja tidak di-commit.
+- **Deploy tertahan:** Vercel CLI 65.2.0 bisa dijalankan lewat `npx`, tetapi **logged out** (`vercel whoami` gagal). Deploy dan CNAME belum bisa dijalankan tanpa `vercel login` atau import repo dari dashboard Vercel.
+- **Belum:** foto + `CREDITS.md`, Lighthouse/kontras/zoom, review visual OG/menu, deploy.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (metadata publikasi)
 
@@ -19,7 +21,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **OG image dibuat:** `public/brand/kern-og.png`, 1200×630, 50 KB, latar ink + wordmark bone + headline Fraunces + titik lime. Generator `scripts/build-og.mjs` (`npm run og`) memakai Chrome headless dan font brand dari `logo-kit/fonts/`.
 - **Sitemap/robots:** `src/app/sitemap.ts` (satu URL, monthly, priority 1) dan `src/app/robots.ts` (allow all + sitemap). `host` sengaja tidak dipakai karena formatnya non-standar.
 - **Verifikasi:** `npm run lint` dan `npm run build` lolos (route `/`, `/robots.txt`, `/sitemap.xml` statis). Dari server produksi lokal: canonical/og/twitter memakai URL absolut; robots dan sitemap keluar benar; OG 200 `image/png`; probe layout 1200×630 tanpa scroll, kedua font termuat, 213 warna sampel (bukan gambar kosong).
-- **Belum:** review visual kartu OG, deploy Vercel + CNAME, endpoint Formspree, menu mobile, foto + `CREDITS.md`, QA final. Tidak ada commit/push.
+- **Belum:** review visual kartu OG, deploy Vercel + CNAME, endpoint Formspree, menu mobile, foto + `CREDITS.md`, QA final. Saat sesi itu belum ada commit; sekarang sudah di-commit dan di-push (lihat catatan terbaru).
 
 ## Pembaruan terakhir — 24 Oktober 2026 (sesi lanjutan)
 
@@ -49,10 +51,11 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - [ ] **Pilih foto final**, pasang lewat `next/image`, tulis `CREDITS.md`; hero masih bidang moss tanpa foto.
 - [x] **Metadata publikasi**: URL `https://kern.belfamuhammad.com`, canonical, OG image 1200×630, sitemap/robots, dan `WebSite` JSON-LD sudah terpasang dan diverifikasi build.
 - [ ] **QA final**: Lighthouse mobile ≥95, kontras WCAG 2.2 AA, zoom 200%, keyboard, reduced motion, interaksi FAQ/menu.
-- [ ] **Commit, repo GitHub, deploy Vercel** setelah diminta; tentukan nama repo lebih dulu, lalu tambah domain di Vercel dan CNAME `kern` di Domainesia.
+- [x] **Commit, repo GitHub** — commit `541ad4e`, repo publik `belfamrf/kern-wellness`, branch `main` sinkron.
+- [ ] **Deploy Vercel** + tambah domain dan CNAME `kern` setelah login Vercel (CLI saat ini logged out).
 - [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
 
-**Titik mulai berikutnya:** review visual kartu OG dan menu, lalu commit/push, deploy Vercel + CNAME `kern`, setelah itu foto + credits dan QA final.
+**Titik mulai berikutnya:** review visual kartu OG dan menu, deploy Vercel + CNAME `kern` (butuh login), lalu foto + credits dan QA final.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -62,7 +65,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Situs lengkap sampai metadata + menu mobile**; sisa foto, QA final, deploy; belum ada commit, belum ada repo GitHub |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Situs lengkap sampai metadata + menu mobile**; commit `541ad4e`, repo publik `belfamrf/kern-wellness`; sisa foto, QA final, deploy |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -101,8 +104,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), dan menu mobile.
-- **Belum selesai:** foto + `CREDITS.md`, QA Lighthouse/kontras/zoom, commit, repo GitHub, deploy + CNAME.
-- **Langkah berikutnya:** commit + push repo `kern-wellness`, deploy Vercel, tambah domain dan CNAME `kern`; setelah itu foto, credits, dan QA final.
+- **Belum selesai:** foto + `CREDITS.md`, QA Lighthouse/kontras/zoom, deploy + CNAME.
+- **Langkah berikutnya:** login Vercel (`npx vercel login`) atau import repo `kern-wellness` dari dashboard, deploy, lalu tambah domain dan CNAME `kern`; setelah itu foto, credits, dan QA final.
 
 ## Alat & skills (opencode)
 
