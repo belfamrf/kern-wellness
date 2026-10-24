@@ -11,7 +11,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Verifikasi:** lint/build lolos. CDP menguji 320/375/414/768/800/801/1440 px: tanpa overflow horizontal, header tidak tumpang tindih. Menu diuji buka/tutup, Escape, Tab ke tautan pertama, klik tautan (fokus ke H2), klik luar, dan resize; tanpa exception console. Screenshot di `%TEMP%/opencode/kern-menu/{375-closed,375-open,768-open,1440-closed}.png`.
 - **Docs drift diperbaiki:** `DESIGN.md` sebelumnya menyebut breakpoint 768px, focus trap, reveal 500/600ms, dua foto studio, dan nav footer yang tidak ada. Sekarang disesuaikan dengan implementasi. README default create-next-app diganti README proyek.
 - **Repo & commit:** commit `541ad4e` (“feat: build KERN concept site”, 117 file) sudah di-push ke repo publik **https://github.com/belfamrf/kern-wellness**, branch `main` sinkron. Delapan file konsep di akar dan `logo-renders/` sengaja tidak di-commit.
-- **Deploy tertahan:** Vercel CLI 65.2.0 bisa dijalankan lewat `npx`, tetapi **logged out** (`vercel whoami` gagal). Deploy dan CNAME belum bisa dijalankan tanpa `vercel login` atau import repo dari dashboard Vercel.
+- **Deploy tertahan:** Vercel CLI 65.2.0 bisa dijalankan lewat `npx`, tetapi **logged out** (`vercel whoami` gagal). Percobaan `vercel deploy --temporary` dihentikan setelah 10 menit tanpa output; folder link `.vercel` yang dibuat percobaan itu sudah dihapus. Deploy dan CNAME belum bisa dijalankan tanpa `vercel login` atau import repo dari dashboard Vercel. Jangan ulangi deploy sebelum login.
 - **Belum:** foto + `CREDITS.md`, Lighthouse/kontras/zoom, review visual OG/menu, deploy.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (metadata publikasi)
