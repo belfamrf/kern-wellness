@@ -224,7 +224,7 @@ Empat fase: **01 Assess** (minggu 1–2), **02 Build** (3–6), **03 Load** (7�
 
 ### Studio
 
-Bidang moss penuh, teks bone. Tiga prinsip singkat: *Small groups. Clear plans. No noise.* Foto natural light belum dipasang; sampai itu selesai bagian ini tetap tipografis. Lokasi ditulis **Nørrebro, Copenhagen**; tidak ada alamat atau jam buka yang dikarang.
+Bidang moss penuh, teks bone. Tiga prinsip singkat: *Small groups. Clear plans. No noise.* Di bawah teks, grid dua foto peralatan: bangku (landscape, kolom lebih lebar) dan rak dumbbell (portrait). Foto dibuat grayscale lalu di-blend `luminosity` di atas moss, dengan caption kecil. Baris kredit fotografer menaut ke `/credits`. Foto menampilkan peralatan, bukan studio, klien, atau staf KERN. Lokasi ditulis **Nørrebro, Copenhagen**; tidak ada alamat atau jam buka yang dikarang.
 
 ### FAQ
 
@@ -236,16 +236,22 @@ Form di atas bone, field paper dengan border 1px. Dua kolom di desktop: nama/ema
 
 ### Footer
 
-Latar ink, teks bone. Simbol KERN, baris kejujuran **"KERN is a concept project. Not a real business."**, kredit **"Design & build by Belfa Muhammad"** dengan tautan ke `https://www.belfamuhammad.com`, dan tautan kembali ke atas. Tidak ada ikon sosial sampai ada URL asli.
+Latar ink, teks bone. Simbol KERN, baris kejujuran **"KERN is a concept project. Not a real business."**, kredit **"Design & build by Belfa Muhammad"** dengan tautan ke `https://www.belfamuhammad.com`, tautan **Photo credits** ke `/credits`, dan tautan kembali ke atas. Tidak ada ikon sosial sampai ada URL asli.
+
+### Credits Page
+
+Halaman `/credits`: wordmark, judul, daftar tiga foto dengan fotografer, tautan Wikimedia Commons, lisensi, dan catatan modifikasi. Canonical `/credits`, masuk sitemap dengan prioritas 0,3. Atribusi juga muncul ringkas di bagian Studio dan footer.
 
 ## Motion
 
 - Ease tunggal: `cubic-bezier(0.22, 1, 0.36, 1)`.
-- Durasi: 180–200ms untuk perubahan state UI (hover, menu, status). Tidak ada durasi 500/600ms di v1.
-- Tidak ada scroll reveal; seluruh konten langsung terlihat saat halaman dimuat.
+- Hero load: stagger 40–340ms, durasi 700–900ms, naik 16px; simbol K muncul dengan scale 0.92 → 1.
+- Scroll reveal memakai CSS `animation-timeline: view()` (entry 0–55%), hanya bila didukung dan `prefers-reduced-motion: no-preference`. Browser tanpa dukungan tetap menampilkan konten.
+- Garis timeline Method tumbuh `scaleX(0 → 1)` saat masuk viewport, desktop saja.
+- Movement screen: step 260ms, hasil 320ms, translate 8px.
+- Hover: panah program bergeser 4px (200ms); foto Studio scale 1.025 dan kontras naik (700ms), hanya di perangkat hover.
 - Tidak ada parallax, scroll hijacking, Lenis, cursor effect, atau animasi loop.
-- Hover hanya mengubah warna/garis; tidak ada scale pada foto.
-- `prefers-reduced-motion`: semua transisi menjadi instan, tanpa translasi.
+- `prefers-reduced-motion`: semua animasi dan transisi menjadi instan, `scroll-behavior: auto`; konten tidak disembunyikan.
 - Ikon menu berubah garis → X; hanya transform 180ms, tanpa animasi panel.
 
 ## Accessibility
@@ -256,8 +262,9 @@ Latar ink, teks bone. Simbol KERN, baris kejujuran **"KERN is a concept project.
 - Menu mobile: tombol `aria-expanded`/`aria-controls`, target 44px, tautan 56px, Escape mengembalikan fokus ke tombol, Tab masuk ke panel, klik di luar dan pelebaran layar menutup panel.
 - Movement screen memakai `button`, `fieldset/legend`, progres yang diumumkan, dan hasil `aria-live`.
 - Form: label eksplisit, error tekstual, bukan warna saja, target ≥44px.
-- Alt text deskriptif; foto dekoratif `alt=""`; simbol hero memakai `role="img"` dan label.
-- Tidak ada teks lime di bone; kontras dicek sebelum build.
+- Alt text deskriptif; foto dekoratif `alt=""`; simbol hero memakai `role="img"` dan label. Dua foto Studio punya alt dan caption; kredit di `/credits`.
+- Tidak ada teks lime di bone; kontras dicek sebelum build. Teks kredit Studio memakai bone penuh di atas moss.
+- Animasi tidak boleh menyembunyikan konten dari pembaca layar atau pengguna reduced-motion.
 - Hormati `prefers-reduced-motion` dan zoom 200%.
 
 ## Performance
@@ -265,16 +272,18 @@ Latar ink, teks bone. Simbol KERN, baris kejujuran **"KERN is a concept project.
 - Target Lighthouse mobile ≥95 (Performance, Accessibility, Best Practices, SEO).
 - LCP <2.5s, CLS <0.1, INP <200ms.
 - Font via `next/font`, subset latin; hanya weight yang dipakai.
+- Foto Studio diimpor statis dari `src/assets/photos` (blur placeholder otomatis), `sizes` per slot, `object-fit: cover`. Sumber di-resize ke 1400–1800px dan q82 sebelum masuk repo.
+- Hero photo memakai `loading="eager"` + `fetchPriority="high"`; wordmark header juga eager karena sempat menjadi kandidat LCP.
 - `next/image` dengan `sizes`; maksimal dua foto besar per layar.
 - Server component sebagai default. Client component hanya untuk menu, movement screen, dan form.
-- Tanpa Motion/Lenis di v1; CSS transition + state React sudah cukup. Tambah library hanya jika interaksi tidak bisa rapi tanpa itu.
+- Motion hanya CSS (load, scroll timeline, transisi state); tanpa library Motion/Lenis.
 - Ikon memakai SVG inline; tidak menambah paket ikon.
 
 ## Publication
 
 - URL produksi: `https://kern.belfamuhammad.com`, subdomain dari `belfamuhammad.com`, aktif dan terverifikasi 24 Oktober 2026. DNS tetap di Domainesia: CNAME `kern` → `3620ed26aa017997.vercel-dns-017.com`; jangan ubah nameserver.
 - Project Vercel `kern-wellness` terhubung ke repo GitHub. URL `kern-wellness.vercel.app` memakai Vercel Authentication (hanya preview); proteksi memakai `all_except_custom_domains`, jadi domain kustom publik setelah DNS aktif.
-- `metadataBase` dan canonical memakai URL itu; `sitemap.xml` dan `robots.txt` dibuat dari konstanta di `src/lib/site.ts`. Satu halaman, satu URL di sitemap.
+- `metadataBase` dan canonical memakai URL itu; `sitemap.xml` dan `robots.txt` dibuat dari konstanta di `src/lib/site.ts`. Sitemap berisi `/` dan `/credits`.
 - OG image 1200×630 di `/brand/kern-og.png`: latar ink, wordmark bone, headline Fraunces, titik lime. Dibuat oleh `npm run og` (`scripts/build-og.mjs`) memakai font brand dari `logo-kit/fonts/`; jalankan ulang bila teks atau URL di kartu berubah. Twitter memakai `summary_large_image`.
 - Data terstruktur hanya `WebSite` + kreator. Tidak ada `LocalBusiness`, alamat, telepon, atau harga di schema karena KERN adalah concept project.
 - Bila URL berubah, cukup ubah `siteUrl` di `src/lib/site.ts` lalu `npm run og`; canonical, sitemap, robots, dan og:url ikut menyesuaikan.

@@ -2,6 +2,16 @@
 
 Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
 
+## Pembaruan terakhir — 24 Oktober 2026 (foto, motion, credits)
+
+- **Kritik pengguna:** halaman terasa basic, hanya teks dengan logo dan palet. Respons: tiga foto, motion CSS, dan detail visual yang masih sesuai arah “quiet clinic”.
+- **Foto:** tiga foto Wikimedia Commons. Rings di hero; benches dan dumbbells di Studio. Lisensi CC BY-SA 3.0/4.0. File di-resize dan di-re-encode lewat `scripts/optimize-photos.mjs` (sharp) ke 1400–1800 px, q82 (282/219/298 KB). Perlakuan grayscale + `mix-blend-mode: luminosity` di atas moss, caption kecil, alt deskriptif.
+- **Halaman `/credits`:** daftar tiga foto dengan fotografer, tautan Commons, lisensi, dan catatan modifikasi; canonical `/credits`; masuk sitemap; ditautkan dari footer dan bagian Studio. `CREDITS.md` juga dibuat.
+- **Motion:** hero load stagger 40–340ms; scroll reveal CSS `animation-timeline: view()` (entry 0–55%); garis Method tumbuh; transisi step/result movement screen; panah program bergeser; foto Studio zoom 1.025 saat hover. Semua dimatikan pada `prefers-reduced-motion`.
+- **Detail visual:** foto hero dengan overlay moss/ink dan skala tick di tepi, grid Studio asimetris, `text-wrap: balance/pretty`, link footer.
+- **QA:** 320/375/768/1440 px tanpa overflow, semua foto termuat, header/menu tetap; reveal terdeteksi (`view()`, opacity 1 setelah scroll); 720 px setara zoom 200% tanpa overflow; reduced motion → animation `none`, scroll auto; `/credits` 375/1440 tanpa overflow dan canonical benar. Lighthouse mobile **95–96 / 100 / 100 / 100**; kontras kredit Studio sempat 4,49 dan diperbaiki. LCP simulasi 2,8–2,9 s, observed LCP 128 ms.
+- **Belum:** review visual pengguna terhadap foto/crop, copy review, pembersihan file sisa, dan deploy batch ini.
+
 ## Pembaruan terakhir — 24 Oktober 2026 (menu mobile & audit)
 
 - **Menu mobile selesai** di `src/components/mobile-menu.tsx`: breakpoint 801px, panel bone selebar layar, 6 tautan 56px (termasuk Book intro), CTA header tetap terlihat. Ini disclosure, bukan modal: scroll tidak dikunci dan fokus tidak diperangkap. Tutup lewat Escape (fokus kembali ke tombol), klik di luar, pemilihan tautan, atau saat layar melebar. Setelah memilih tautan, fokus pindah ke heading tujuan.
@@ -51,16 +61,19 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 
 - [ ] **Review visual** deck 7 slide, favicon 16/32 px, kartu OG, dan situs (375/768/1440) dengan model vision atau mata sendiri; perbaiki hanya bila terlihat masalah. Jangan mengulang pemilihan konsep A.
 - [x] **Tambahkan menu mobile** — selesai; lihat catatan sesi terbaru.
-- [ ] **Pilih foto final**, pasang lewat `next/image`, tulis `CREDITS.md`; hero masih bidang moss tanpa foto.
+- [x] **Foto final** — tiga foto Commons terpasang, `CREDITS.md` dan `/credits` dibuat, lisensi serta modifikasi dicatat.
 - [x] **Metadata publikasi**: URL `https://kern.belfamuhammad.com`, canonical, OG image 1200×630, sitemap/robots, dan `WebSite` JSON-LD sudah terpasang dan diverifikasi build.
-- [x] **Lighthouse mobile** 24 Okt: Performance 95, Accessibility 100, Best Practices 100, SEO 100. Speed Index 5,0 s dan unused JS 53 KiB dicatat sebagai peluang, bukan kegagalan.
-- [ ] **QA manual**: zoom 200%, `prefers-reduced-motion`, kontras teks kecil, keyboard pada FAQ/form.
+- [x] **Lighthouse mobile** 24 Okt: **95–96** Performance, 100 Accessibility, 100 Best Practices, 100 SEO. Speed Index turun ke 0,8 s setelah foto; LCP simulasi 2,8–2,9 s, observed 128 ms.
+- [x] **QA manual** — 720 px (zoom 200%), reduced motion, menu, form, dan `/credits` diuji.
+- [ ] **Copy review** bahasa Inggris dan konsistensi klaim.
+- [ ] **Bersihkan file sisa** di akar (`kern-concept-*`, `logo-renders/`) setelah izin pengguna.
+- [ ] **Review visual pengguna** terhadap tiga foto dan crop-nya.
 - [x] **Commit, repo GitHub** — commit `541ad4e`, repo publik `belfamrf/kern-wellness`, branch `main` sinkron.
 - [x] **Deploy Vercel** — project `kern-wellness`, deployment `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY, repo GitHub terhubung.
 - [x] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`; `vercel domains verify --strict` sudah `configured_correctly` dan HTTPS aktif.
 - [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
 
-**Titik mulai berikutnya:** review visual pengguna, pilih foto + `CREDITS.md`, QA zoom 200%/reduced motion, copy review, lalu bersihkan file sisa dan hubungkan dari website pribadi.
+**Titik mulai berikutnya:** review visual pengguna pada foto/crop dan motion, copy review, bersihkan file sisa, lalu hubungkan dari website pribadi dan buat studi kasus.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -70,7 +83,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** (HTTPS, Lighthouse mobile 95/100/100/100); sisa foto, QA minor, studi kasus |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, dan halaman credits terpasang; Lighthouse 95–96/100/100/100; sisa copy review, kebersihan file, studi kasus |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -108,9 +121,9 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Arah desain dikunci:** **The Quiet Clinic** (arah A) dengan disiplin struktur dari arah B. Palet bone `#f3f0e8` / ink `#1b1d19` / moss `#4a5545` + aksen lime `#d8f36b`; huruf **Fraunces + Manrope**; elemen khas **Movement screen** 4 pertanyaan.
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
-- **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), dan menu mobile.
-- **Belum selesai:** foto + `CREDITS.md`, QA zoom 200%/reduced motion, copy review, pembersihan file sisa.
-- **Langkah berikutnya:** pilih foto berlisensi, lalu QA manual dan copy review sebelum menghubungkan dari website pribadi.
+- **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion CSS (hero, scroll reveal, timeline, screen).
+- **Belum selesai:** copy review, pembersihan file sisa di akar, review visual pengguna.
+- **Langkah berikutnya:** minta pengguna menilai foto/motion, lakukan copy pass, bersihkan file sisa setelah izin, lalu hubungkan dari website pribadi.
 
 ## Alat & skills (opencode)
 

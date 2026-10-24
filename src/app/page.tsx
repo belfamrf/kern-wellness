@@ -1,4 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
+import rings from "@/assets/photos/rings.jpg";
+import benches from "@/assets/photos/benches.jpg";
+import dumbbells from "@/assets/photos/dumbbells.jpg";
 import { BookingForm } from "@/components/booking-form";
 import { MobileMenu } from "@/components/mobile-menu";
 import { MovementScreen } from "@/components/movement-screen";
@@ -69,6 +73,8 @@ export default function Home() {
               width={820}
               height={256}
               unoptimized
+              loading="eager"
+              fetchPriority="high"
             />
           </a>
           <nav className="desktop-nav" aria-label="Primary navigation">
@@ -107,8 +113,20 @@ export default function Home() {
             </div>
             <div className="hero-mark" role="img" aria-label="KERN calibrated K symbol">
               <Image
+                src={rings}
+                alt=""
+                fill
+                placeholder="blur"
+                sizes="(max-width: 800px) calc(100vw - 40px), 480px"
+                className="hero-photo"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <span className="hero-scale" aria-hidden="true" />
+              <Image
                 src="/brand/kern-symbol-white.svg"
                 alt=""
+                className="hero-symbol"
                 width={256}
                 height={256}
                 unoptimized
@@ -238,6 +256,32 @@ export default function Home() {
                 <span>No noise.</span>
               </div>
             </div>
+            <div className="studio-photos">
+              <figure className="studio-photo studio-photo-wide">
+                <Image
+                  src={benches}
+                  alt="Two weight training benches in a dim training room."
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 800px) calc(100vw - 40px), 620px"
+                />
+                <figcaption>The room</figcaption>
+              </figure>
+              <figure className="studio-photo studio-photo-tall">
+                <Image
+                  src={dumbbells}
+                  alt="A rack of dumbbells."
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 800px) calc(100vw - 40px), 420px"
+                />
+                <figcaption>The load</figcaption>
+              </figure>
+            </div>
+            <p className="studio-credit">
+              Photographs: Wolfgang1018, Santeri Viinamäki.{" "}
+              <Link href="/credits">Licences</Link>
+            </p>
           </div>
         </section>
 
@@ -300,7 +344,10 @@ export default function Home() {
             <p>KERN is a concept project. Not a real business.</p>
             <p>Design &amp; build by <a href="https://www.belfamuhammad.com">Belfa Muhammad</a>.</p>
           </div>
-          <a className="footer-link" href="#top">Back to top ↑</a>
+          <div className="footer-links">
+            <Link className="footer-link" href="/credits">Photo credits</Link>
+            <a className="footer-link" href="#top">Back to top ↑</a>
+          </div>
         </div>
       </footer>
     </>

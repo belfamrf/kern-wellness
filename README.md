@@ -19,13 +19,20 @@ npm run og       # render ulang kartu OG 1200x630
 ## Struktur singkat
 
 - `src/app/page.tsx` — seluruh halaman (section 01–07).
+- `src/app/credits/page.tsx` — halaman atribusi foto.
 - `src/components/movement-screen.tsx` — movement screen 4 pertanyaan.
 - `src/components/booking-form.tsx` — form booking demo + validasi.
 - `src/components/mobile-menu.tsx` — menu di bawah 801px.
+- `src/assets/photos/` — tiga foto berlisensi (sumber dan lisensi dicatat di `CREDITS.md`).
 - `src/lib/site.ts` — URL produksi dan metadata yang dipakai bersama.
 - `src/app/sitemap.ts`, `src/app/robots.ts` — SEO.
 - `logo-kit/` — master logo, ekspor, presentasi, dan generator aset.
+- `scripts/optimize-photos.mjs` — resize + re-encode foto sebelum masuk repo.
 - `public/brand/` — aset yang dipakai situs (favicon, ikon, OG, wordmark).
+
+## Foto
+
+Tiga foto berasal dari Wikimedia Commons (CC BY-SA) dan tampil dengan perlakuan grayscale + moss. Detail sumber, lisensi, dan modifikasi ada di `CREDITS.md` dan di halaman `/credits`. Jangan mengganti file di `src/assets/photos` tanpa memperbarui keduanya.
 
 ## Form booking
 
@@ -62,7 +69,7 @@ Semua SVG/PNG/ICO/manifest dibuat oleh `node logo-kit/build-logos.mjs`. Jangan m
 - `BRIEF.md` — brief dan batasan proyek.
 - `DESIGN.md` — sistem desain dan aturan implementasi.
 - `MEMORY.md` — status pekerjaan dan langkah berikutnya.
-- `CREDITS.md` — belum ada; wajib dibuat saat foto berlisensi dipasang.
+- `CREDITS.md` — sumber, lisensi, dan modifikasi foto serta font.
 
 ## Batasan
 
