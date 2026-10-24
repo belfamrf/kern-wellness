@@ -2,6 +2,20 @@
 
 Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
 
+## Status penutupan — 24 Oktober 2026
+
+Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
+
+- **Fondasi & desain:** font final, kit logo + presentasi, hero foto, tiga foto berlisensi, halaman `/credits`, `CREDITS.md`, grid Studio, dan detail tipografi.
+- **Fitur:** movement screen 4 pertanyaan, form booking demo dengan validasi, menu mobile aksesibel, penomoran section 01–07.
+- **Motion berbasis waktu:** `IntersectionObserver` (28px/650ms, stagger 70ms), foto clip-path 850ms, hero line mask/K draw/photo settle, bar progres header, garis Method desktop + mobile, transisi step screen. Reduced motion dan no-JS aman.
+- **Publikasi:** metadata + canonical + OG 1200×630, sitemap (`/`, `/credits`), robots, `WebSite` JSON-LD, domain + HTTPS, Vercel terhubung GitHub.
+- **Kualitas:** Lighthouse mobile **95 / 100 / 100 / 100**, CLS **0**; 320/375/768/1440 tanpa overflow; 720px (zoom 200%) aman; `/credits` canonical benar.
+- **Kebersihan repo:** delapan file `kern-concept-*` dan folder `logo-renders/` dipindahkan ke `logo-kit/archive/` (dengan README arsip). Akar proyek bersih; aset produksi tetap di `logo-kit/exports/` dan `public/brand/`.
+- **Commit:** `1af8add` (motion berbasis waktu) dan `77ec88a` (catatan live) sudah di-push; commit arsip menyusul pada penutupan ini.
+
+**Besok:** copy review bahasa Inggris, review motion di HP pengguna (video di `Downloads\kern-motion`), endpoint Formspree bila penerima sudah disetujui, lalu studi kasus + tautan dari website pribadi.
+
 ## Pembaruan terakhir — 24 Oktober 2026 (motion terlihat)
 
 - **Masalah:** pengguna merasa situs statis. Penyebab: reveal lama memakai CSS `animation-timeline: view()` yang tidak berjalan di iOS Safari dan “scrub” mengikuti scroll di Chrome; amplitudo 16px terlalu halus; hover tidak ada di HP; animasi hero selesai sebelum dilihat.
@@ -10,7 +24,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **QA:** opacity row 0,32 @80ms → 0,96 @340ms → 1 @940ms (benar-benar bergerak); progres 0,24 → 1; garis Method mencapai scale 1; 320/375/1440 tanpa overflow; reduced motion `rowPending=false`, hero animation none; Lighthouse **95 / 100 / 100 / 100**, CLS 0.
 - **Video review:** `C:\Users\USER\Downloads\kern-motion\motion-1440.mp4` (10 s) dan `motion-375.mp4` (12 s), direkam dari build lokal via CDP + ffmpeg.
 - **Deploy & live:** commit `1af8add` di-push; deployment Vercel READY. Dicek di domain asli pada 375px: `hero-line`, `scroll-progress`, dan `data-reveal` ada; reveal live bergerak 0,22 → 0,97 → 1; `/credits` 200.
-- **Belum:** pengguna menonton video/merasakan motion di HP, copy review, pembersihan file sisa.
+- **Belum:** copy review (besok), review motion live oleh pengguna, endpoint Formspree, studi kasus.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (foto, motion, credits)
 
@@ -31,7 +45,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Kesalahan yang ditemukan dan diperbaiki:** `scripts/build-og.mjs` sempat rusak karena edit PowerShell `Get-Content`/`Set-Content` tanpa UTF-8; teks "Nørrebro" menjadi "NA,rrebro" dan "·" menjadi karakter rusak di kartu OG. Skrip ditulis ulang UTF-8, kartu dirender ulang, dan teks diverifikasi lewat DOM (`ø` dan `·` ada, tanpa U+FFFD).
 - **Verifikasi:** lint/build lolos. CDP menguji 320/375/414/768/800/801/1440 px: tanpa overflow horizontal, header tidak tumpang tindih. Menu diuji buka/tutup, Escape, Tab ke tautan pertama, klik tautan (fokus ke H2), klik luar, dan resize; tanpa exception console. Screenshot di `%TEMP%/opencode/kern-menu/{375-closed,375-open,768-open,1440-closed}.png`.
 - **Docs drift diperbaiki:** `DESIGN.md` sebelumnya menyebut breakpoint 768px, focus trap, reveal 500/600ms, dua foto studio, dan nav footer yang tidak ada. Sekarang disesuaikan dengan implementasi. README default create-next-app diganti README proyek.
-- **Repo & commit:** commit `541ad4e` (“feat: build KERN concept site”, 117 file) sudah di-push ke repo publik **https://github.com/belfamrf/kern-wellness**, branch `main` sinkron. Delapan file konsep di akar dan `logo-renders/` sengaja tidak di-commit.
+- **Repo & commit:** commit `541ad4e` (“feat: build KERN concept site”, 117 file) sudah di-push ke repo publik **https://github.com/belfamrf/kern-wellness**, branch `main` sinkron. Delapan file konsep di akar dan `logo-renders/` saat itu tidak di-commit; pada penutupan 24 Oktober keduanya dipindahkan ke `logo-kit/archive/`.
 - **Deploy produksi selesai:** percobaan `--temporary` ternyata membuat project `01-wellness` dan dua deployment; project itu saya rename menjadi `kern-wellness` (scope `belfas-projects-e2cecb6e`). Deployment terbaru `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY. `https://kern-wellness.vercel.app` aktif tetapi terlindungi Vercel Authentication (hanya untuk preview); alias lama `01-wellness.vercel.app` sudah dihapus. Repo GitHub sudah terhubung untuk auto-deploy.
 - **Domain menunggu DNS:** `kern.belfamuhammad.com` sudah ditambahkan ke project. Record wajib: **CNAME `kern` → `3620ed26aa017997.vercel-dns-017.com`**. `vercel domains verify` masih `invalid-configuration`. Proteksi SSO memakai `all_except_custom_domains`, jadi domain kustom akan publik tanpa login setelah record aktif.
 - **Domain aktif dan terverifikasi:** record CNAME sudah ditambahkan; `vercel domains verify --strict` → `configured_correctly`. HTTP 308 → HTTPS, homepage 200 tanpa login. Chrome headless di domain asli: 375/1440 px tanpa overflow, font termuat, tanpa gambar/anchor rusak, menu buka/Escape normal, tanpa exception. Lighthouse mobile **95 / 100 / 100 / 100**; catatan: Speed Index 5,0 s dan unused JS 53 KiB, bukan kegagalan target.
@@ -77,15 +91,15 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - [x] **Lighthouse mobile** 24 Okt: **95–96** Performance, 100 Accessibility, 100 Best Practices, 100 SEO. Speed Index turun ke 0,8 s setelah foto; LCP simulasi 2,8–2,9 s, observed 128 ms.
 - [x] **QA manual** — 720 px (zoom 200%), reduced motion, menu, form, dan `/credits` diuji.
 - [x] **Motion terlihat** — IO time-based, hero mask/K draw, progres header, timeline dua breakpoint; video review tersedia.
-- [ ] **Copy review** bahasa Inggris dan konsistensi klaim.
-- [ ] **Bersihkan file sisa** di akar (`kern-concept-*`, `logo-renders/`) setelah izin pengguna.
-- [ ] **Review visual pengguna** terhadap tiga foto dan crop-nya.
-- [x] **Commit, repo GitHub** — commit `541ad4e`, repo publik `belfamrf/kern-wellness`, branch `main` sinkron.
+- [ ] **Copy review** bahasa Inggris dan konsistensi klaim — dijadwalkan besok.
+- [x] **Bersihkan file sisa** — delapan `kern-concept-*` dan `logo-renders/` dipindahkan ke `logo-kit/archive/` (24 Oktober), akar bersih.
+- [x] **Review visual pengguna** — tampilan, foto, dan palet dinyatakan aman; review motion live masih menyusul.
+- [x] **Commit, repo GitHub** — commit terbaru `1af8add` (motion) + `77ec88a`, repo publik `belfamrf/kern-wellness`, `main` sinkron.
 - [x] **Deploy Vercel** — project `kern-wellness`, deployment `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY, repo GitHub terhubung.
 - [x] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`; `vercel domains verify --strict` sudah `configured_correctly` dan HTTPS aktif.
 - [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
 
-**Titik mulai berikutnya:** review visual pengguna pada foto/crop dan motion, copy review, bersihkan file sisa, lalu hubungkan dari website pribadi dan buat studi kasus.
+**Titik mulai berikutnya:** copy review bahasa Inggris (besok), review motion live oleh pengguna, endpoint Formspree bila penerima disetujui, lalu studi kasus dan tautan dari website pribadi.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -95,7 +109,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, dan halaman credits terpasang; Lighthouse 95–96/100/100/100; sisa copy review, kebersihan file, studi kasus |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, dan `/credits` terpasang; Lighthouse 95–96/100/100/100; sisa copy review dan studi kasus |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -128,14 +142,14 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 
 ## 01-wellness (proyek aktif)
 
-- **Status:** fondasi halaman Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal tercatat `2b41897`. Dokumen `BRIEF.md` + `DESIGN.md` sudah ada; perubahan hari ini belum di-commit.
+- **Status:** fondasi halaman Next.js **16.4.3** (App Router, folder `src/`), React **19.3**, Tailwind **4**, TypeScript, ESLint. Git lokal branch `main`, commit awal `2b41897`; commit terbaru `1af8add` (motion) dan `77ec88a` (catatan live), repo publik terhubung ke Vercel.
 - **Brief dikunci 23 Oktober 2026:** brand **KERN**, studio strength & mobility di **Copenhagen**; target pekerja sibuk **30–50**; layanan 1-on-1 + small group (maks 4) dan program fondasi **12 minggu**; website **bahasa Inggris**; tujuan utama **booking sesi intro gratis**; harga ilustratif ditampilkan sebagai "from"; kontak lewat form Formspree (Instagram ditunda sampai ada URL asli); foto stok berlisensi dicatat di `CREDITS.md`; semua demo berlabel **concept project**, tanpa testimoni/angka karangan.
 - **Arah desain dikunci:** **The Quiet Clinic** (arah A) dengan disiplin struktur dari arah B. Palet bone `#f3f0e8` / ink `#1b1d19` / moss `#4a5545` + aksen lime `#d8f36b`; huruf **Fraunces + Manrope**; elemen khas **Movement screen** 4 pertanyaan.
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
-- **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion CSS (hero, scroll reveal, timeline, screen).
-- **Belum selesai:** copy review, pembersihan file sisa di akar, review visual pengguna.
-- **Langkah berikutnya:** minta pengguna menilai foto/motion, lakukan copy pass, bersihkan file sisa setelah izin, lalu hubungkan dari website pribadi.
+- **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion berbasis waktu (`page-motion.tsx`).
+- **Belum selesai:** copy review, review motion live oleh pengguna, endpoint Formspree, studi kasus.
+- **Langkah berikutnya:** copy pass besok, konfirmasi motion di HP, lalu hubungkan dari website pribadi.
 
 ## Alat & skills (opencode)
 

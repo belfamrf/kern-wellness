@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 256" width="820" height="256" role="img" aria-labelledby="title">
+  <title id="title">KERN concept C lockup</title>
+  <g id="symbol">
+    <path fill="#1b1d19" d="M42 32h30v192H42z M72 112h27l80-80h34l-80 96 80 96h-34l-80-80H72z"/>
+    <path fill="#1b1d19" d="M112 116h32v24h-32z"/>
+  </g>
+  <g id="wordmark" fill="#1b1d19">
+    <path d="M300 56h22v144h-22z M322 122h18l47-66h27l-52 72 52 72h-27l-47-65h-18z"/>
+    <path d="M438 56h86v20h-64v40h55v20h-55v44h66v20h-88z"/>
+    <path fill-rule="evenodd" d="M556 56h51c32 0 49 15 49 40 0 18-9 31-26 37l33 67h-25l-29-61h-31v61h-22zm22 20v43h28c19 0 28-7 28-22 0-14-9-21-28-21z"/>
+    <path d="M683 56h22l55 99V56h22v144h-22l-55-99v99h-22z"/>
+  </g>
+</svg>
