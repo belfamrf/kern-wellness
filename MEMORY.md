@@ -13,7 +13,9 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Repo & commit:** commit `541ad4e` (“feat: build KERN concept site”, 117 file) sudah di-push ke repo publik **https://github.com/belfamrf/kern-wellness**, branch `main` sinkron. Delapan file konsep di akar dan `logo-renders/` sengaja tidak di-commit.
 - **Deploy produksi selesai:** percobaan `--temporary` ternyata membuat project `01-wellness` dan dua deployment; project itu saya rename menjadi `kern-wellness` (scope `belfas-projects-e2cecb6e`). Deployment terbaru `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY. `https://kern-wellness.vercel.app` aktif tetapi terlindungi Vercel Authentication (hanya untuk preview); alias lama `01-wellness.vercel.app` sudah dihapus. Repo GitHub sudah terhubung untuk auto-deploy.
 - **Domain menunggu DNS:** `kern.belfamuhammad.com` sudah ditambahkan ke project. Record wajib: **CNAME `kern` → `3620ed26aa017997.vercel-dns-017.com`**. `vercel domains verify` masih `invalid-configuration`. Proteksi SSO memakai `all_except_custom_domains`, jadi domain kustom akan publik tanpa login setelah record aktif.
-- **Belum:** CNAME di Domainesia, foto + `CREDITS.md`, Lighthouse/kontras/zoom, review visual OG/menu.
+- **Domain aktif dan terverifikasi:** record CNAME sudah ditambahkan; `vercel domains verify --strict` → `configured_correctly`. HTTP 308 → HTTPS, homepage 200 tanpa login. Chrome headless di domain asli: 375/1440 px tanpa overflow, font termuat, tanpa gambar/anchor rusak, menu buka/Escape normal, tanpa exception. Lighthouse mobile **95 / 100 / 100 / 100**; catatan: Speed Index 5,0 s dan unused JS 53 KiB, bukan kegagalan target.
+- **Resolver lokal:** `Resolve-DnsName` default masih NXDOMAIN karena cache router 192.168.18.1, tetapi `curl` dan Chrome ke domain berhasil. Bila browser pengguna gagal, flush DNS atau pakai 1.1.1.1.
+- **Belum:** foto + `CREDITS.md`, QA zoom 200%/reduced motion/kontras manual, review visual pengguna, pembersihan file sisa.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (metadata publikasi)
 
@@ -51,13 +53,14 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - [x] **Tambahkan menu mobile** — selesai; lihat catatan sesi terbaru.
 - [ ] **Pilih foto final**, pasang lewat `next/image`, tulis `CREDITS.md`; hero masih bidang moss tanpa foto.
 - [x] **Metadata publikasi**: URL `https://kern.belfamuhammad.com`, canonical, OG image 1200×630, sitemap/robots, dan `WebSite` JSON-LD sudah terpasang dan diverifikasi build.
-- [ ] **QA final**: Lighthouse mobile ≥95, kontras WCAG 2.2 AA, zoom 200%, keyboard, reduced motion, interaksi FAQ/menu.
+- [x] **Lighthouse mobile** 24 Okt: Performance 95, Accessibility 100, Best Practices 100, SEO 100. Speed Index 5,0 s dan unused JS 53 KiB dicatat sebagai peluang, bukan kegagalan.
+- [ ] **QA manual**: zoom 200%, `prefers-reduced-motion`, kontras teks kecil, keyboard pada FAQ/form.
 - [x] **Commit, repo GitHub** — commit `541ad4e`, repo publik `belfamrf/kern-wellness`, branch `main` sinkron.
 - [x] **Deploy Vercel** — project `kern-wellness`, deployment `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY, repo GitHub terhubung.
-- [ ] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`, lalu `vercel domains verify kern.belfamuhammad.com --strict`.
+- [x] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`; `vercel domains verify --strict` sudah `configured_correctly` dan HTTPS aktif.
 - [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
 
-**Titik mulai berikutnya:** tambah CNAME `kern` di Domainesia, verifikasi domain + HTTPS, review visual OG/menu, lalu foto + credits dan QA final.
+**Titik mulai berikutnya:** review visual pengguna, pilih foto + `CREDITS.md`, QA zoom 200%/reduced motion, copy review, lalu bersihkan file sisa dan hubungkan dari website pribadi.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -67,7 +70,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di Vercel (`kern-wellness`), repo publik terhubung**; menunggu CNAME `kern`; sisa foto, QA final |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** (HTTPS, Lighthouse mobile 95/100/100/100); sisa foto, QA minor, studi kasus |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -106,8 +109,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), dan menu mobile.
-- **Belum selesai:** CNAME `kern` di Domainesia, foto + `CREDITS.md`, QA Lighthouse/kontras/zoom.
-- **Langkah berikutnya:** setelah CNAME aktif, jalankan `vercel domains verify kern.belfamuhammad.com --strict`, cek HTTPS/OG, lalu foto, credits, dan QA final.
+- **Belum selesai:** foto + `CREDITS.md`, QA zoom 200%/reduced motion, copy review, pembersihan file sisa.
+- **Langkah berikutnya:** pilih foto berlisensi, lalu QA manual dan copy review sebelum menghubungkan dari website pribadi.
 
 ## Alat & skills (opencode)
 

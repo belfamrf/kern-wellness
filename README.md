@@ -45,13 +45,13 @@ npx vercel --prod
 
 ## Domain
 
-Domain `https://kern.belfamuhammad.com` sudah ditambahkan ke project dan menunggu DNS. Di Domainesia, tambahkan:
+Domain `https://kern.belfamuhammad.com` **aktif dan terverifikasi** (24 Oktober 2026). Record yang dipakai di Domainesia:
 
 | Type | Name | Value |
 |---|---|---|
 | CNAME | `kern` | `3620ed26aa017997.vercel-dns-017.com` |
 
-Jangan ubah nameserver. Setelah record aktif, jalankan `npx vercel domains verify kern.belfamuhammad.com --strict`. Ubah URL hanya di `src/lib/site.ts`, lalu `npm run og` bila teks kartu berubah.
+Jangan ubah nameserver. Untuk mengecek ulang: `npx vercel domains verify kern.belfamuhammad.com --strict`. Ubah URL hanya di `src/lib/site.ts`, lalu `npm run og` bila teks kartu berubah.
 
 ## Aset logo
 
