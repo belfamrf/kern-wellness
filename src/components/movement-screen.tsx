@@ -235,25 +235,27 @@ export function MovementScreen() {
           Question {progress} of {questions.length}
         </span>
       </div>
-      <fieldset className="screen-question">
-        <legend ref={legendRef} tabIndex={-1}>
-          {question.legend}
-        </legend>
-        <div className="screen-options">
-          {question.options.map((option) => (
-            <button
-              className="screen-option"
-              type="button"
-              key={option.value}
-              aria-pressed={selected === option.value}
-              onClick={() => choose(option.value)}
-            >
-              <span>{option.label}</span>
-              <span className="screen-tick" aria-hidden="true" />
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      <div className="screen-step" key={step}>
+        <fieldset className="screen-question">
+          <legend ref={legendRef} tabIndex={-1}>
+            {question.legend}
+          </legend>
+          <div className="screen-options">
+            {question.options.map((option) => (
+              <button
+                className="screen-option"
+                type="button"
+                key={option.value}
+                aria-pressed={selected === option.value}
+                onClick={() => choose(option.value)}
+              >
+                <span>{option.label}</span>
+                <span className="screen-tick" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        </fieldset>
+      </div>
       <div className="screen-actions">
         <button
           className="text-button"
