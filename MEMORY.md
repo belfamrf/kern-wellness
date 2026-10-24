@@ -10,7 +10,8 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Motion:** hero load stagger 40–340ms; scroll reveal CSS `animation-timeline: view()` (entry 0–55%); garis Method tumbuh; transisi step/result movement screen; panah program bergeser; foto Studio zoom 1.025 saat hover. Semua dimatikan pada `prefers-reduced-motion`.
 - **Detail visual:** foto hero dengan overlay moss/ink dan skala tick di tepi, grid Studio asimetris, `text-wrap: balance/pretty`, link footer.
 - **QA:** 320/375/768/1440 px tanpa overflow, semua foto termuat, header/menu tetap; reveal terdeteksi (`view()`, opacity 1 setelah scroll); 720 px setara zoom 200% tanpa overflow; reduced motion → animation `none`, scroll auto; `/credits` 375/1440 tanpa overflow dan canonical benar. Lighthouse mobile **95–96 / 100 / 100 / 100**; kontras kredit Studio sempat 4,49 dan diperbaiki. LCP simulasi 2,8–2,9 s, observed LCP 128 ms.
-- **Belum:** review visual pengguna terhadap foto/crop, copy review, pembersihan file sisa, dan deploy batch ini.
+- **Deploy batch ini:** commit `6f60be4` (foto, motion, credits) dan `8d3709d` (animasi step screen) sudah di-push; dua deployment Vercel READY. Live dicek: homepage 200, tiga foto termuat, `/credits` 200 + canonical benar, sitemap berisi `/` dan `/credits`. Lighthouse live **96 / 100 / 100 / 100** (LCP 2,7 s, CLS 0).
+- **Belum:** review visual pengguna terhadap foto/crop dan motion, copy review, pembersihan file sisa.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (menu mobile & audit)
 
