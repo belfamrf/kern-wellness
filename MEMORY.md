@@ -12,7 +12,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - **Publikasi:** metadata + canonical + OG 1200×630, sitemap (`/`, `/credits`), robots, `WebSite` JSON-LD, domain + HTTPS, Vercel terhubung GitHub.
 - **Kualitas:** Lighthouse mobile **95 / 100 / 100 / 100**, CLS **0**; 320/375/768/1440 tanpa overflow; 720px (zoom 200%) aman; `/credits` canonical benar.
 - **Kebersihan repo:** delapan file `kern-concept-*` dan folder `logo-renders/` dipindahkan ke `logo-kit/archive/` (dengan README arsip). Akar proyek bersih; aset produksi tetap di `logo-kit/exports/` dan `public/brand/`.
-- **Commit:** `1af8add` (motion berbasis waktu) dan `77ec88a` (catatan live) sudah di-push; commit arsip menyusul pada penutupan ini.
+- **Commit:** `1af8add` (motion berbasis waktu), `77ec88a` (catatan live), dan `8e29140` (arsip + status penutupan) sudah di-push; branch `main` sinkron.
 
 **Besok:** copy review bahasa Inggris, review motion di HP pengguna (video di `Downloads\kern-motion`), endpoint Formspree bila penerima sudah disetujui, lalu studi kasus + tautan dari website pribadi.
 
