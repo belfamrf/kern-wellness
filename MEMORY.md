@@ -9,6 +9,7 @@ Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi ber
 - **Aman:** kelas reveal hanya ditambahkan JS; tanpa JS konten terlihat. Reduced motion tidak menambahkan kelas dan mematikan animasi. `scroll-progress` dekoratif, tidak mengubah layout.
 - **QA:** opacity row 0,32 @80ms → 0,96 @340ms → 1 @940ms (benar-benar bergerak); progres 0,24 → 1; garis Method mencapai scale 1; 320/375/1440 tanpa overflow; reduced motion `rowPending=false`, hero animation none; Lighthouse **95 / 100 / 100 / 100**, CLS 0.
 - **Video review:** `C:\Users\USER\Downloads\kern-motion\motion-1440.mp4` (10 s) dan `motion-375.mp4` (12 s), direkam dari build lokal via CDP + ffmpeg.
+- **Deploy & live:** commit `1af8add` di-push; deployment Vercel READY. Dicek di domain asli pada 375px: `hero-line`, `scroll-progress`, dan `data-reveal` ada; reveal live bergerak 0,22 → 0,97 → 1; `/credits` 200.
 - **Belum:** pengguna menonton video/merasakan motion di HP, copy review, pembersihan file sisa.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (foto, motion, credits)
