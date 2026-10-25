@@ -17,7 +17,7 @@ const principles = [
   {
     number: "02",
     title: "Build",
-    text: "Clear sessions that make strength feel practical and repeatable.",
+    text: "Clear sessions, each with a purpose you can name.",
   },
   {
     number: "03",
@@ -38,14 +38,14 @@ const programs = [
     number: "02",
     title: "Small group",
     text: "Focused training for up to four people who value a quieter room.",
-    detail: "Maximum 4 people · Clear plan · Shared progress",
+    detail: "12 weeks · Up to four people · Weekly sessions",
     price: "from €960",
   },
   {
     number: "03",
     title: "Maintenance",
     text: "Single sessions to keep a good training rhythm in place.",
-    detail: "Flexible format · Measured session · No noise",
+    detail: "Single session · 60 minutes · Book as needed",
     price: "€95 / session",
   },
 ];
@@ -182,8 +182,8 @@ export default function Home() {
             <div className="section-content">
               <h2 id="programs-title" data-reveal>Choose a starting point.</h2>
               <p className="section-lead" data-reveal>
-                Every format begins with an intro and a conversation about what you need.
-                Prices shown are illustrative for this concept project.
+                Every format starts with an intro and a conversation about what you need.
+                Prices are examples for this concept project.
               </p>
               <div className="program-list">
                 {programs.map((program) => (
@@ -212,8 +212,8 @@ export default function Home() {
             <div className="section-content">
               <h2 id="screen-title" data-reveal>Find your starting point.</h2>
               <p className="section-lead" data-reveal>
-                Four questions about how you sit, move, and train. The answer is a
-                preference guide, not a medical assessment.
+                Four questions about how you sit, move, and train. You will get a
+                suggested format and the reason behind it.
               </p>
               <div data-reveal>
                 <MovementScreen />
@@ -231,7 +231,7 @@ export default function Home() {
             <div className="section-content method-content">
               <h2 id="method-title" data-reveal>A plan that makes sense.</h2>
               <p className="section-lead" data-reveal>
-                The first twelve weeks give you time to learn, build, and review without
+                Twelve weeks give you time to assess, build, load, and review without
                 rushing the work.
               </p>
               <div className="method-line" role="list" aria-label="12-week training method">
@@ -305,10 +305,10 @@ export default function Home() {
             <div className="section-content">
               <h2 id="faq-title" data-reveal>Before you start.</h2>
               {[
-                ["Can I start as a beginner?", "Yes. The intro helps establish your starting point, including any previous training experience."],
-                ["What should I wear?", "Comfortable clothes you can move in and clean training shoes."],
-                ["How big are the groups?", "Small-group sessions are designed for a maximum of four people."],
-                ["What if I miss a session?", "Scheduling and cancellation terms would be discussed at the intro. This concept project does not accept real bookings."],
+                ["Can I start as a beginner?", "Yes. The intro is where we find your starting point, whatever your training history."],
+                ["What should I wear?", "Comfortable clothes you can move in, and clean indoor training shoes."],
+                ["How big are the groups?", "Small-group sessions cap at four people."],
+                ["What if I miss a session?", "We would agree scheduling and cancellation at the intro. This concept project takes no real bookings."],
                 ["Is this rehabilitation?", "No. KERN is a strength and mobility training concept. For pain or injury, speak with a qualified clinician."],
               ].map(([question, answer]) => (
                 <details className="faq-item" key={question} data-reveal>
@@ -336,8 +336,8 @@ export default function Home() {
                 <BookingForm />
               </div>
               <p className="concept-note">
-                Concept project — KERN is not a real business. This demo form does not
-                send real bookings.
+                Concept project. KERN is not a real business, and this form takes no
+                real bookings.
               </p>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function Home() {
           <div>
             <p className="footer-brand">KERN</p>
             <p>KERN is a concept project. Not a real business.</p>
-            <p>Design &amp; build by <a href="https://www.belfamuhammad.com">Belfa Muhammad</a>.</p>
+            <p>Designed and built by <a href="https://www.belfamuhammad.com">Belfa Muhammad</a>.</p>
           </div>
           <div className="footer-links">
             <Link className="footer-link" href="/credits">Photo credits</Link>

@@ -4,7 +4,7 @@ export const siteTitle = "KERN — Strength, measured.";
 export const siteDescription =
   "KERN is a concept project for a quiet strength and mobility studio in Nørrebro, Copenhagen.";
 export const shareDescription =
-  "A quiet strength and mobility studio in Nørrebro, Copenhagen.";
+  "A concept strength and mobility studio in Nørrebro, Copenhagen.";
 export const ogImage = {
   url: "/brand/kern-og.png",
   type: "image/png",

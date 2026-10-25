@@ -14,6 +14,7 @@ const goals = [
   { value: "strength", label: "Build strength" },
   { value: "ease", label: "Move more easily" },
   { value: "routine", label: "Keep a routine" },
+  { value: "people", label: "Train with others" },
   { value: "other", label: "Something else" },
 ];
 
@@ -21,7 +22,7 @@ const formats: { value: TrainingFormat; label: string; note: string }[] = [
   {
     value: "foundation",
     label: "Foundation 1-on-1",
-    note: "Twelve weeks, one to one",
+    note: "12 weeks, one to one",
   },
   {
     value: "small-group",
@@ -36,7 +37,7 @@ const formats: { value: TrainingFormat; label: string; note: string }[] = [
 ];
 
 const statusCopy: Record<Exclude<Status, "idle" | "submitting">, string> = {
-  demo: "Demo only — nothing was sent. This concept form has no endpoint yet.",
+  demo: "Demo only. Nothing was sent.",
   success: "Thank you. Your intro request has been sent.",
   error: "That did not send. Please try again.",
 };
@@ -249,9 +250,7 @@ export function BookingForm() {
           {status === "submitting" ? "Sending…" : "Request intro"}
         </button>
         <p className="form-note">
-          Free 30-minute intro. No obligation.
-          <br />
-          Concept project — demo form.
+          Concept project. Demo form, no real bookings.
         </p>
       </div>
 

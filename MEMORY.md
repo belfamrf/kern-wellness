@@ -1,6 +1,17 @@
 # MEMORY: progres portofolio
 
-Diperbarui: 24 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+Diperbarui: 25 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+
+## Pembaruan terakhir — 25 Oktober 2026 (copy review)
+
+- **Keputusan pengguna:** harga **tetap euro** (€1.920 / €960 / €95) karena portofolio dilihat klien internasional; form booking **tetap demo** tanpa endpoint, jadi tidak ada "booking" palsu yang masuk ke email.
+- **Konsistensi klaim:** label concept project kini ada di deskripsi share/OG (`site.ts`) dan manifest; sebelumnya dua tempat itu berbunyi seolah studio nyata. Catatan form tidak lagi memakai bahasa developer ("no endpoint yet").
+- **Angka dan istilah disamakan:** "Maximum 4 people" → "Up to four people"; "Twelve weeks" → "12 weeks"; durasi program kecil (€960) sekarang punya dasar waktu ("12 weeks · Up to four people · Weekly sessions") supaya harga tidak menggantung; Maintenance dapat detail konkret ("Single session · 60 minutes · Book as needed") menggantikan "Measured session · No noise" yang kosong.
+- **Copy lemah diperbaiki:** prinsip Build ("make strength feel practical and repeatable" → "each with a purpose you can name"), jawaban FAQ pemula/kelas/alas kaki, kalimat hasil screen ("trunk" → "mid-back"; dua kalimat "will have a place" → "We will start with…"), footer "Design & build by" → "Designed and built by", status demo dirapikan.
+- **Tanpa duplikasi disclaimer:** disclaimer "preference guide, not a medical assessment" sekarang hanya di kartu hasil screen; section lead menjelaskan hasil yang didapat. Em dash dihapus dari body copy (hanya tersisa di judul metadata). Tidak ada kontraksi, jadi nada tetap formal-tenang.
+- **Form:** pilihan tujuan menambah "Train with others" agar cocok dengan jawaban screen "Train with other people"; catatan form kini hanya "Concept project. Demo form, no real bookings."
+- **QA:** `npm run lint` dan `npm run build` lolos. Chrome headless pada 320/375/768/1440: tanpa overflow horizontal (320 dan 375 `scrollWidth` = lebar layar), tiga baris program utuh, keenam gambar termuat, tidak ada anchor mati. Alur screen → hasil ("Small group", fokus pindah ke H3) → format ikut terpilih di form → submit menampilkan "Demo only. Nothing was sent."
+- **Catatan:** bila `NEXT_PUBLIC_FORMSPREE_ENDPOINT` suatu saat diisi, copy "no real bookings" harus ikut diubah; endpoint sengaja dikosongkan.
 
 ## Status penutupan — 24 Oktober 2026
 
@@ -14,7 +25,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - **Kebersihan repo:** delapan file `kern-concept-*` dan folder `logo-renders/` dipindahkan ke `logo-kit/archive/` (dengan README arsip). Akar proyek bersih; aset produksi tetap di `logo-kit/exports/` dan `public/brand/`.
 - **Commit:** `1af8add` (motion berbasis waktu), `77ec88a` (catatan live), dan `8e29140` (arsip + status penutupan) sudah di-push; branch `main` sinkron.
 
-**Besok:** copy review bahasa Inggris, review motion di HP pengguna (video di `Downloads\kern-motion`), endpoint Formspree bila penerima sudah disetujui, lalu studi kasus + tautan dari website pribadi.
+**Rencana yang tersisa:** review motion di HP pengguna (video di `Downloads\kern-motion`), studi kasus + tautan dari website pribadi. Copy review sudah dikerjakan 25 Oktober; endpoint Formspree dibatalkan dan form tetap demo.
 
 ## Pembaruan terakhir — 24 Oktober 2026 (motion terlihat)
 
@@ -91,7 +102,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - [x] **Lighthouse mobile** 24 Okt: **95–96** Performance, 100 Accessibility, 100 Best Practices, 100 SEO. Speed Index turun ke 0,8 s setelah foto; LCP simulasi 2,8–2,9 s, observed 128 ms.
 - [x] **QA manual** — 720 px (zoom 200%), reduced motion, menu, form, dan `/credits` diuji.
 - [x] **Motion terlihat** — IO time-based, hero mask/K draw, progres header, timeline dua breakpoint; video review tersedia.
-- [ ] **Copy review** bahasa Inggris dan konsistensi klaim — dijadwalkan besok.
+- [x] **Copy review** bahasa Inggris dan konsistensi klaim — selesai 25 Oktober; lihat catatan paling atas.
 - [x] **Bersihkan file sisa** — delapan `kern-concept-*` dan `logo-renders/` dipindahkan ke `logo-kit/archive/` (24 Oktober), akar bersih.
 - [x] **Review visual pengguna** — tampilan, foto, dan palet dinyatakan aman; review motion live masih menyusul.
 - [x] **Commit, repo GitHub** — commit terbaru `1af8add` (motion) + `77ec88a`, repo publik `belfamrf/kern-wellness`, `main` sinkron.
@@ -99,7 +110,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - [x] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`; `vercel domains verify --strict` sudah `configured_correctly` dan HTTPS aktif.
 - [ ] **Setelah situs siap**: studi kasus, hubungkan dari website pribadi, periksa situs live.
 
-**Titik mulai berikutnya:** copy review bahasa Inggris (besok), review motion live oleh pengguna, endpoint Formspree bila penerima disetujui, lalu studi kasus dan tautan dari website pribadi.
+**Titik mulai berikutnya:** review motion live oleh pengguna, lalu studi kasus (25 Oktober) dan tautan dari website pribadi. Form tetap demo; endpoint Formspree tidak akan dipasang.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -109,7 +120,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, dan `/credits` terpasang; Lighthouse 95–96/100/100/100; sisa copy review dan studi kasus |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, `/credits`, dan copy review selesai; Lighthouse 95–96/100/100/100; sisa studi kasus dan review motion di HP |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -148,8 +159,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion berbasis waktu (`page-motion.tsx`).
-- **Belum selesai:** copy review, review motion live oleh pengguna, endpoint Formspree, studi kasus.
-- **Langkah berikutnya:** copy pass besok, konfirmasi motion di HP, lalu hubungkan dari website pribadi.
+- **Belum selesai:** review motion live oleh pengguna, studi kasus, tautan dari website pribadi. Copy review selesai 25 Oktober; form sengaja tetap demo.
+- **Langkah berikutnya:** konfirmasi motion di HP, lalu studi kasus dan hubungkan dari website pribadi.
 
 ## Alat & skills (opencode)
 

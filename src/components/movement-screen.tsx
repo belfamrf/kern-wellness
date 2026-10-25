@@ -79,7 +79,7 @@ function recommend(answers: Answers): Recommendation {
     format: "foundation",
     title: "Foundation 1-on-1",
     reason:
-      "Your answers point to one-to-one work for the first twelve weeks, so the plan can start from your current range and load.",
+      "Your answers point to one-to-one work for the first 12 weeks, so the plan can start from where your movement and strength are now.",
   };
   const smallGroup: Recommendation = {
     format: "small-group",
@@ -108,15 +108,15 @@ function recommend(answers: Answers): Recommendation {
 
 function secondSentence(answers: Answers) {
   if (answers.sitting === "6to8" || answers.sitting === "8plus") {
-    return "You spend most of the working day seated, so hips and trunk come first.";
+    return "You spend most of the working day seated, so hips and mid-back come first.";
   }
   switch (answers.limits) {
     case "hips":
       return "We will begin with hips and lower back, at a pace you can repeat.";
     case "neck":
-      return "Neck and shoulders will have a place in the first block.";
+      return "We will start with neck and shoulders in the first block.";
     case "knees":
-      return "Knees and ankles will be part of the first block.";
+      return "We will start with knees and ankles in the first block.";
     default:
       return "The plan starts at a pace you can repeat in a working week.";
   }
