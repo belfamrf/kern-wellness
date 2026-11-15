@@ -159,8 +159,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
 | `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, `/credits`, dan copy review selesai; Lighthouse 95–96/100/100/100; review motion terprogram 390 selesai, sisa konfirmasi rasa oleh pemilik |
-| `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
-| `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
+| `02-jasa-lokal` | Proyek demo 2 — **Kelso & Reid**, renovation contractor, Melbourne | **Selesai dan live di https://renovation.belfamuhammad.com** (dicek 200, 15 November 2026); Lighthouse live 100/100/100/100; studi kasus `/work/renovation` + kartu selesai; sisa review visual pemilik. Detail di `02-jasa-lokal\MEMORY.md` |
+| `03-hospitality` | Proyek demo 3 — **Sawah House**, private villa, Bali | **Dibangun dan live di https://sawah-house.vercel.app** (Lighthouse mobile 96/100/100/100); subdomain `villa.belfamuhammad.com` menunggu CNAME pemilik, lalu studi kasus `/work/villa`. Detail di `03-hospitality\MEMORY.md` |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
 
 ## 00-website-pribadi (website utama)
@@ -216,7 +216,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 
 ## Yang belum selesai
 
-1. **Tiga proyek demo belum selesai.** KERN sudah live dan kartunya di website pribadi sudah menaut ke studi kasus `/work/kern`; dua demo lainnya belum dibangun.
+1. **Tiga proyek demo:** KERN (01) selesai dan live; Kelso & Reid (02) selesai dan live di `renovation.belfamuhammad.com`; Sawah House (03) sudah live di `sawah-house.vercel.app` dan tinggal subdomain `villa.belfamuhammad.com` + studi kasus `/work/villa`. Ketiganya masih menunggu review visual pemilik.
 2. **Profil Upwork belum dioptimalkan** (judul, overview, skill, rate, foto, verifikasi identitas masih tugas Belfa).
 3. **Form kontak belum diuji kirim sungguhan** setelah live; perlu satu pesan uji untuk memastikan masuk ke email.
 4. **Halaman studi kasus** untuk tiap demo belum ada (direncanakan di `BRIEF.md`: satu halaman per proyek).
@@ -226,9 +226,9 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 
 1. Uji form kontak sekali, cek Google Analytics realtime.
 2. Rapikan profil Upwork pakai `_referensi/UPWORK-PROFIL.md`, lalu pasang link Upwork di website.
-3. Lanjut **01-wellness** dari checklist penutupan sesi: font, koreksi kit logo, movement screen, form demo, lalu kelengkapan situs dan publikasi. Brief dan arah logo sudah dipilih.
-4. Lanjut **02-jasa-lokal**, lalu **03-hospitality**.
-5. Setelah demo jadi: buat halaman studi kasus di website pribadi, hubungkan kartu ke halaman itu, perbarui `CASE-STUDY.md`, ulang Lighthouse dan review.
+3. **01-wellness (KERN)**: selesai — jangan buka lagi kecuali pemilik menemukan masalah baru di HP.
+4. **02-jasa-lokal (Kelso & Reid)**: selesai dan live; sisa review visual pemilik. Ada satu file belum di-commit: `scripts/capture-work.mjs`.
+5. **03-hospitality (Sawah House)**: berikutnya — CNAME `villa` → `ed011aff1c249a44.vercel-dns-017.com`, lalu `vercel domains verify` + cek `vercel certs ls` + redeploy bila sertifikat belum terbit, lalu studi kasus `/work/villa` di website pribadi, kartu meja, sitemap, Lighthouse domain asli.
 6. Ganti foto/teks mana pun yang berubah, lalu commit dan push tiap bagian besar.
 
 ## Perintah harian
