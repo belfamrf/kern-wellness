@@ -1,6 +1,16 @@
 # MEMORY: progres portofolio
 
-Diperbarui: 25 Oktober 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+Diperbarui: 15 November 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
+
+## Pembaruan terakhir — 15 November 2026 (tautan dari website pribadi)
+
+- **Kartu wellness di website pribadi sudah diperbaiki dan di-push** di repo `00-website-pribadi` (bukan repo ini). Isinya kini **Copenhagen, Denmark** (bukan Lisbon, Portugal), tujuan serta audiensnya disamakan dengan brief KERN, status berubah dari "In progress" menjadi **"Live"**, dan di bawah meja ada tombol "Read the KERN case study".
+- **Halaman studi kasus `/work/kern`** ada di repo itu: hero 1440, tangkapan movement screen 375, bagian Studio, brief, masalah, enam keputusan desain, "What testing changed", skor Lighthouse 95–96/100/100/100, dan tombol ke `kern.belfamuhammad.com`. Sitemapnya kini dua URL.
+- **Kartu share halaman itu dibuat sendiri** (1200×630) karena sebelumnya memakai foto hero 2880×1800 (rasio 8:5) yang akan terpotong di WhatsApp/X. Loader font Archivo dipindah ke `src/lib/og-font.ts` di repo itu dan dipakai kedua kartu share.
+- **Verifikasi:** di repo itu `lint` + `build` lolos, lalu `next start` lokal: `/work/kern` 200, `og:image` + `twitter:image` menunjuk PNG 1200×630 (dicek sampai ukuran piksel). Deployment produksi `belfamuhammad-website-5ow1pntxn` READY dan sudah menjadi alias `www.belfamuhammad.com`; lewat `belfamuhammad-website.vercel.app`, beranda menampilkan "Copenhagen, Denmark" dan "Live", "Lisbon" hilang, `/work/kern` 200, sitemap dua URL, kartu share 1200×630.
+- **Commit:** `1a347c3` (kartu + halaman studi kasus), `72fa6ee` (kartu share + `MEMORY.md` + `CLAUDE.md`), `9a398c8` (catatan hash). Semua sudah di `origin/main`.
+- **BLOCKER domain (belum diperbaiki, bukan tugas coding):** `belfamuhammad.com` sekarang didelegasikan ke **NS1/NS2.NONVERIFIEDDOMAIN.COM**, dan hostname itu **NXDOMAIN**, jadi seluruh zona gagal (SERVFAIL di resolver Google/Cloudflare). Artinya `www.belfamuhammad.com` **dan** `kern.belfamuhammad.com` **tidak bisa dibuka pengunjung** sejak sekitar 5 November (RDAP: last changed 2026-11-05; registrasi 21 Oktober 2026). Ini pola registrar yang menonaktifkan domain karena kontak/email belum diverifikasi. Perlu diselesaikan di akun registrar (Domainesia): verifikasi kontak, cek status domain, lalu pasang kembali nameserver. Sampai itu beres, "situs live" hanya bisa dicek lewat URL `*.vercel.app`.
+- **Sisa todo dari daftar lama:** tinggal **review motion di HP**. Push + deploy beres; kartu wellness beres.
 
 ## Pembaruan terakhir — 25 Oktober 2026 (copy review)
 
@@ -110,7 +120,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - [x] **Deploy Vercel** — project `kern-wellness`, deployment `dpl_8veNffg6jmbhd9Tc5usixMNcrBUJ` READY, repo GitHub terhubung.
 - [x] **CNAME `kern`** di Domainesia → `3620ed26aa017997.vercel-dns-017.com`; `vercel domains verify --strict` sudah `configured_correctly` dan HTTPS aktif.
 - [x] **Studi kasus** — `CASE-STUDY.md` selesai 25 Oktober.
-- [ ] **Setelah situs siap**: hubungkan dari website pribadi, periksa situs live. Kartu wellness di website pribadi masih menulis "Lisbon, Portugal" dan "In progress"; perlu diperbaiki saat menautkan.
+- [x] **Setelah situs siap**: hubungkan dari website pribadi, periksa situs live. Kartu wellness kini menulis **Copenhagen, Denmark** dan **Live**, menaut ke `/work/kern`; selesai 15 November 2026.
 
 **Titik mulai berikutnya:** review motion live oleh pengguna, lalu studi kasus (25 Oktober) dan tautan dari website pribadi. Form tetap demo; endpoint Formspree tidak akan dipasang.
 
@@ -161,8 +171,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion berbasis waktu (`page-motion.tsx`).
-- **Belum selesai:** review motion live oleh pengguna, tautan dari website pribadi. Copy review dan studi kasus selesai 25 Oktober; form sengaja tetap demo.
-- **Langkah berikutnya:** konfirmasi motion di HP, lalu studi kasus dan hubungkan dari website pribadi.
+- **Belum selesai:** review motion live oleh pengguna — satu-satunya sisa. Tautan dari website pribadi selesai 15 November 2026; copy review dan studi kasus selesai 25 Oktober; form sengaja tetap demo.
+- **Langkah berikutnya:** konfirmasi motion di HP, lalu perbaiki DNS domain (lihat catatan 15 November).
 
 ## Alat & skills (opencode)
 
@@ -180,7 +190,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 
 ## Yang belum selesai
 
-1. **Tiga proyek demo belum selesai.** KERN sudah memiliki fondasi halaman; dua demo lainnya belum dibangun. Kartu di website pribadi belum dihubungkan ke studi kasus.
+1. **Tiga proyek demo belum selesai.** KERN sudah live dan kartunya di website pribadi sudah menaut ke studi kasus `/work/kern`; dua demo lainnya belum dibangun.
 2. **Profil Upwork belum dioptimalkan** (judul, overview, skill, rate, foto, verifikasi identitas masih tugas Belfa).
 3. **Form kontak belum diuji kirim sungguhan** setelah live; perlu satu pesan uji untuk memastikan masuk ke email.
 4. **Halaman studi kasus** untuk tiap demo belum ada (direncanakan di `BRIEF.md`: satu halaman per proyek).
