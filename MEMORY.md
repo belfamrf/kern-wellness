@@ -2,6 +2,17 @@
 
 Diperbarui: 15 November 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
 
+## Pembaruan terakhir — 15 November 2026 (perbaikan titik Method & kartu format)
+
+- **Laporan pemilik dari HP (bukan temuan skrip):** (1) titik lime di timeline Method terlihat "di bawah garis" dan jelek; (2) kartu format di form booking (Foundation 1-on-1 / Small group / Not sure) teksnya menggantung di atas kotak dan tidak sejajar dengan bulatan radio.
+- **Penyebab 1:** garis vertikal mobile dulu satu `::after` pada kontainer `.method-line`. Karena pseudo itu dicat sesudah anak-anaknya, garis 1px **menembus lingkaran lime**; garis juga mulai di `top: 0` kontainer (7,5px di atas pusat titik pertama) dan berakhir di dasar kontainer = **112px di bawah titik terakhir**, setara satu tahap kosong. Bukti peta piksel 390: kolom ink di tengah lingkaran + ekor garis di bawah `04 Review`.
+- **Perbaikan 1:** `.method-dot { z-index: 1 }`; garis kontainer dimatikan di mobile; garis kini `::after` per `.method-step` (`top: 13px`, `bottom: -2px`, 1px) dan `:last-child::after { display: none }`. Animasi jadi `scaleY` 420ms dengan stagger 90ms per tahap (delay 0/90/180/270) dan tetap dipicu kelas `line-pending`. Hasil: tidak ada garis di atas titik pertama, tidak ada ekor di bawah titik keempat, garis berhenti di titik, lingkaran bersih.
+- **Penyebab 2:** `.field label` (0,1,1) mengalahkan `.format-option` (0,1,0) → padding kartu jadi **0** (teks menempel border) dan label mewarisi uppercase + tracking 0,08em; `.field input` (0,1,1) juga mengenai radio → `min-height: 48px`, padding 12px, border 1px, sehingga radio menjadi **16×48** dan lingkarannya jatuh di tengah kotak sementara teks di atas. Terukur: `padding: 0px`, radio 16×48, label 11,52px uppercase, radio vs garis teks **17px**.
+- **Perbaikan 2:** selector dibatasi — `.field > label, .field > legend` dan `.field input:not([type="radio"]):not([type="checkbox"]), .field select, .field textarea` (plus varian `:hover`). Hasil: padding kartu 14px, radio 16×16, label 14,72px sentence case, catatan 12px; radio vs garis teks **1px**. Label caption field (Name/Email/Format) tetap uppercase 11,52px/700.
+- **Verifikasi:** `npm run build` lolos (lint dijalankan sebelum commit). 390 dan 1440 tanpa overflow; peta piksel 390 (`%TEMP%\opencode\kern-motion\pix-*-*.png`, `pixmap-*.json`) menunjukkan lingkaran tanpa garis di dalamnya, garis berhenti di titik keempat, dan teks kartu format sebaris dengan radio. Regresi motion: 32 reveal, 0 tertinggal saat fling, progres 0→1, CLS 0,0023, 0 error, reduced-motion dan no-JS aman; rail Method tumbuh bertahap (0 → 0,20 → 0,78 → 1).
+- **Docs:** `DESIGN.md` (Method Timeline + Motion) diperbarui: garis mobile per tahap dan aturan selector form.
+- **Git:** belum di-commit saat catatan ditulis; deploy Vercel menyusul setelah push.
+
 ## Pembaruan terakhir — 15 November 2026 (review motion 390)
 
 - **Cara menguji:** Chrome headless `--headless=new` + CDP (Node, WebSocket bawaan; tanpa puppeteer), emulasi iPhone **390×844**, DPR 2, UA mobile + touch, build produksi lokal (`next start -p 3100`) **dan** domain live `https://kern.belfamuhammad.com`. Skrip di `%TEMP%\opencode\kern-motion\{review,review2,review3,review4,encode}.mjs`; laporan `report*.json`.

@@ -708,6 +708,7 @@ section[id] {
   position: absolute;
   top: -6px;
   left: 0;
+  z-index: 1;
   width: 11px;
   height: 11px;
   background: var(--signal);
@@ -1101,8 +1102,8 @@ section[id] {
   gap: 8px;
 }
 
-.field label,
-.field legend {
+.field > label,
+.field > legend {
   padding: 0;
   color: var(--ink);
   font-size: 0.72rem;
@@ -1118,7 +1119,7 @@ section[id] {
   letter-spacing: 0.04em;
 }
 
-.field input,
+.field input:not([type="radio"]):not([type="checkbox"]),
 .field select,
 .field textarea {
   width: 100%;
@@ -1137,7 +1138,7 @@ section[id] {
   resize: vertical;
 }
 
-.field input:hover,
+.field input:not([type="radio"]):not([type="checkbox"]):hover,
 .field select:hover,
 .field textarea:hover {
   border-color: var(--ink-soft);
@@ -1474,19 +1475,39 @@ textarea:focus-visible {
   }
 
   .method-line::after {
+    display: none;
+  }
+
+  .method-step::after {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 13px;
+    bottom: -2px;
     left: -1px;
     width: 1px;
     background: var(--ink);
     transform-origin: top;
-    transition: transform 700ms var(--ease);
+    transition: transform 420ms var(--ease);
   }
 
-  .method-line.line-pending::after {
+  .method-line.line-pending .method-step::after {
     transform: scaleY(0);
+  }
+
+  .method-step:nth-child(2)::after {
+    transition-delay: 90ms;
+  }
+
+  .method-step:nth-child(3)::after {
+    transition-delay: 180ms;
+  }
+
+  .method-step:nth-child(4)::after {
+    transition-delay: 270ms;
+  }
+
+  .method-step:last-child::after {
+    display: none;
   }
 
   .method-step {

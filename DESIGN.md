@@ -220,7 +220,7 @@ Garis 1px atas; isi: nomor `01`, nama program (Fraunces), satu kalimat, daftar s
 
 ### Method Timeline
 
-Empat fase: **01 Assess** (minggu 1–2), **02 Build** (3–6), **03 Load** (7–10), **04 Review** (11–12). Garis 1px dengan titik. Statis, tanpa animasi masuk dan tidak bisa digeser. Ini pinjaman disiplin struktur dari arah B, bukan interaksi kedua.
+Empat fase: **01 Assess** (minggu 1–2), **02 Build** (3–6), **03 Load** (7–10), **04 Review** (11–12). Garis 1px dengan titik. Statis, tanpa animasi masuk dan tidak bisa digeser. Ini pinjaman disiplin struktur dari arah B, bukan interaksi kedua. Di ponsel garisnya vertikal dan digambar per tahap (`::after` pada tiap step, bukan satu garis kontainer), jadi garis mulai di titik pertama dan berhenti di titik terakhir — tidak ada ekor garis di bawah `04 Review`. Titik selalu dicat di atas garis (`z-index: 1`), sehingga garis tidak pernah memotong lingkaran lime.
 
 ### Studio
 
@@ -248,7 +248,8 @@ Halaman `/credits`: wordmark, judul, daftar tiga foto dengan fotografer, tautan 
 - Hero load: dua baris headline naik dari mask (900ms, delay 40/140ms), simbol K digambar lewat `clip-path` (1000ms), foto hero settle dari scale 1,06 (1400ms). Eyebrow/lead/CTA naik 16px dengan stagger 40–340ms.
 - Scroll reveal memakai `IntersectionObserver` berbasis waktu: naik 28px/650ms, stagger 70ms (maks 280ms), sekali per elemen. Foto Studio memakai clip-path 8% + scale 1,05/850ms. Tidak memakai `animation-timeline`, jadi berjalan di Safari/Chrome/Firefox dan tidak “scrub” mengikuti scroll.
 - Bar progres 2px ink di bawah header mengikuti posisi baca (langsung, tanpa animasi).
-- Garis timeline Method tumbuh 700ms di desktop (`scaleX`) dan mobile (`scaleY`), dipicu saat masuk viewport.
+- Garis timeline Method tumbuh 700ms saat masuk viewport: di desktop satu garis horizontal (`scaleX`); di ponsel potongan garis per tahap (`scaleY`, 420ms, stagger 90ms) sehingga terbaca sebagai satu sapuan dari atas ke bawah.
+- Format di form booking: tiga kartu radio (Foundation 1-on-1 / Small group / Not sure). Padding kartu 14px, radio 16px sejajar baris pertama label, label 0.92rem sentence case, catatan 0.75rem di bawahnya. Label field biasa (uppercase 0.72rem) tidak boleh ikut terpasang ke kartu ini; selector `.field` dibatasi dengan `.field > label` dan `:not([type="radio"])`.
 - Movement screen: step 260ms, hasil 320ms, translate 8px; progress bar tetap 200ms.
 - Hover: panah program bergeser 4px (200ms); foto Studio scale 1.025 dan kontras naik (700ms), hanya di perangkat hover.
 - Tidak ada parallax, scroll hijacking, Lenis, cursor effect, atau animasi loop.
