@@ -2,6 +2,21 @@
 
 Diperbarui: 15 November 2026. Isinya keadaan folder ini saat ini, supaya sesi berikutnya tidak mengulang pekerjaan.
 
+## Pembaruan terakhir — 15 November 2026 (review motion 390)
+
+- **Cara menguji:** Chrome headless `--headless=new` + CDP (Node, WebSocket bawaan; tanpa puppeteer), emulasi iPhone **390×844**, DPR 2, UA mobile + touch, build produksi lokal (`next start -p 3100`) **dan** domain live `https://kern.belfamuhammad.com`. Skrip di `%TEMP%\opencode\kern-motion\{review,review2,review3,review4,encode}.mjs`; laporan `report*.json`.
+- **Hero berjalan dan selesai:** `line-up` translateY **72,6px → 0** (900ms), simbol K `clip-path` **inset(0 100% 0 0) → inset(0)** (1000ms), foto **scale 1,054 → 1** (1400ms); semua `document.getAnimations()` berstatus `finished`. Dengan **CPU throttle 4×** tetap mulus: 56 nilai transform berbeda, 62 nilai clip-path, 61 nilai opacity copy; selesai ~1,2 s, `.hero-copy` opacity 1.
+- **Reveal nyata, bukan lompat:** 32 elemen `data-reveal`, semuanya mulai `reveal-pending`; tiap elemen melewati **~29–31 nilai opacity antara** menuju 1, dengan delay 0/70/140 ms sesuai urutan grup. Foto Studio memakai **clip-path `inset(8% 0)` → `inset(0)` lewat 51 langkah** + scale 1,05 → none (850ms); opacity-nya memang tetap 1 (memakai clip-path, bukan fade).
+- **Garis Method mobile tumbuh:** kelas `line-pending` dilepas, pseudo `::after` scaleY bergerak 0 → 0,10 → 0,20 … → 1 (bukan instan).
+- **Bar progres header:** scaleX **0 → 0,38 → 1** dengan 212 nilai berbeda, konsisten di lokal dan live.
+- **Fling cepat (atas → bawah langsung):** **0** elemen tertinggal tak terlihat, **0** masih pending; setelah scroll balik ke atas pelan, **0** elemen tersembunyi. Deep link `/#booking` langsung: form opacity 1, 0 elemen tersembunyi.
+- **Anchor & menu:** 7 section, judul berhenti di **207–216px** (header 65px, `scroll-margin-top: 88px`), 0 elemen tak terlihat di viewport. Menu: panel 357px, 5 tautan 56px, tanpa overflow, Escape menutup dan fokus balik ke tombol, klik "Method" menutup panel + fokus pindah ke H2 "A plan that makes sense.". Panel memang muncul instan **tanpa animasi** — sesuai `DESIGN.md:256`, bukan drift.
+- **Reduced motion:** 0 `reveal-pending`, 0 animasi berjalan, hero langsung diam, `scroll-behavior: auto`, 0 elemen tersembunyi setelah scroll ke bawah. **Tanpa JS:** h1 opacity 1, 0 elemen tersembunyi, tanpa overflow.
+- **Angka lain:** CLS **0,0023**; **0 error konsol/exception**; tanpa overflow horizontal di 390 (beranda dan `/credits`, canonical benar). Live identik dengan build lokal (scrollHeight 8761, 32 reveal, hasil screen "Foundation 1-on-1", 4 bar terisi).
+- **Video untuk mata pemilik:** `%TEMP%\opencode\kern-motion\kern-motion-390.mp4` — 780×1688, 30fps, **18,5 s** (hero → scroll bertahap → menu buka/tutup → sampai bawah), 3,4 MB. Screenshot pendamping: `390-menu-open.png`, `390-cpu4-hero.png`, `390-after-scroll.png`, `390-reduced-motion.png`.
+- **Tidak ada kode yang diubah** — tidak ada temuan yang perlu diperbaiki. Batasnya jujur: ini emulasi Blink (Chrome), **bukan iOS Safari asli**, dan model sesi text-only sehingga tidak bisa menilai rasa/visualitas; keputusan akhir tetap milik pemilik setelah menonton mp4 di HP. Ini juga yang ditulis `CASE-STUDY.md:59` sebagai langkah tersisa.
+- **Git:** hanya `MEMORY.md` yang berubah di sesi ini; belum di-commit.
+
 ## Pembaruan terakhir — 15 November 2026 (tautan dari website pribadi)
 
 - **Kartu wellness di website pribadi sudah diperbaiki dan di-push** di repo `00-website-pribadi` (bukan repo ini). Isinya kini **Copenhagen, Denmark** (bukan Lisbon, Portugal), tujuan serta audiensnya disamakan dengan brief KERN, status berubah dari "In progress" menjadi **"Live"**, dan di bawah meja ada tombol "Read the KERN case study".
@@ -10,7 +25,7 @@ Diperbarui: 15 November 2026. Isinya keadaan folder ini saat ini, supaya sesi be
 - **Verifikasi:** di repo itu `lint` + `build` lolos, lalu `next start` lokal: `/work/kern` 200, `og:image` + `twitter:image` menunjuk PNG 1200×630 (dicek sampai ukuran piksel). Deployment produksi `belfamuhammad-website-5ow1pntxn` READY dan sudah menjadi alias `www.belfamuhammad.com`; lewat `belfamuhammad-website.vercel.app`, beranda menampilkan "Copenhagen, Denmark" dan "Live", "Lisbon" hilang, `/work/kern` 200, sitemap dua URL, kartu share 1200×630.
 - **Commit:** `1a347c3` (kartu + halaman studi kasus), `72fa6ee` (kartu share + `MEMORY.md` + `CLAUDE.md`), `9a398c8` (catatan hash). Semua sudah di `origin/main`.
 - **BLOCKER domain (belum diperbaiki, bukan tugas coding):** `belfamuhammad.com` sekarang didelegasikan ke **NS1/NS2.NONVERIFIEDDOMAIN.COM**, dan hostname itu **NXDOMAIN**, jadi seluruh zona gagal (SERVFAIL di Google, Cloudflare, AdGuard, dan 8.8.8.8). Artinya `www.belfamuhammad.com` **dan** `kern.belfamuhammad.com` **tidak bisa dibuka pengunjung** sejak sekitar 5 November (RDAP: last changed 2026-11-05; registrasi 21 Oktober 2026). **Panel Domainesia tetap menampilkan "Active"** (dicek pemilik 15 November 2026) — status panel tidak mencerminkan delegasi registry, jadi jangan dipakai sebagai bukti domain sehat. Tidak ada DNSSEC (`delegationSigned: false`), jadi bukan masalah DNSSEC. Rentang 21 Oktober → 5 November ≈ 15 hari, yaitu tenggat verifikasi kontak registran ICANN (RAA 2014). Perlu diselesaikan di Domainesia: cari email verifikasi, atau minta support mengecek status verifikasi kontak lalu mengembalikan nameserver. **Bukti tambahan 15 November 2026:** panel Domainesia sudah menampilkan nameserver yang benar (`ns1.domainesia.net` / `ns2.domainesia.net`), jadi dari panel tidak ada yang bisa diubah; keempat IP `ns1`/`ns2.domainesia.net` menjawab normal untuk `domainesia.net` tetapi **SERVFAIL untuk `belfamuhammad.com`** (zona tidak terbit di DNS Domainesia). Jadi ini murni pekerjaan support/registrar (eskalasi ke WebNic, IANA 460). Sampai itu beres, "situs live" hanya bisa dicek lewat URL `*.vercel.app`. **Panel tidak bisa memperbaiki apa pun:** saat "Use default nameservers" disimpan, muncul *"An issue was encountered while updating the domain nameservers. Please contact support."* **Selesai 15 November 2026:** pemilik memverifikasi email dari Domainesia, dan delegasi registry langsung berubah ke `NS1.DOMAINESIA.NET` / `NS2.DOMAINESIA.NET` (last changed 06:39 UTC). Diverifikasi di domain asli: `kern.belfamuhammad.com` 200 (penanda motion `hero-line`, `scroll-progress`, `data-reveal` ada) dan `/credits` 200; di website pribadi `/` 200 dengan kartu "Copenhagen, Denmark", `/work/kern` 200 dengan kartu share 1200×630 dan sitemap 2 URL. Status panel registrar tidak membuktikan domain sehat; pakai RDAP Verisign.
-- **Sisa todo dari daftar lama:** tinggal **review motion di HP**. Push + deploy beres; kartu wellness beres.
+- **Sisa todo dari daftar lama:** tinggal **review motion di HP**. Review terprogram (390, lokal + live) selesai 15 November — lihat catatan paling atas; yang masih perlu adalah mata pemilik menonton `kern-motion-390.mp4` di HP.
 
 ## Pembaruan terakhir — 25 Oktober 2026 (copy review)
 
@@ -122,7 +137,7 @@ Situs **live di https://kern.belfamuhammad.com**. Yang selesai hari ini:
 - [x] **Studi kasus** — `CASE-STUDY.md` selesai 25 Oktober.
 - [x] **Setelah situs siap**: hubungkan dari website pribadi, periksa situs live. Kartu wellness kini menulis **Copenhagen, Denmark** dan **Live**, menaut ke `/work/kern`; selesai 15 November 2026.
 
-**Titik mulai berikutnya:** review motion live oleh pengguna, lalu studi kasus (25 Oktober) dan tautan dari website pribadi. Form tetap demo; endpoint Formspree tidak akan dipasang.
+**Titik mulai berikutnya:** tonton `kern-motion-390.mp4` di HP untuk konfirmasi rasa motion (review terprogram 390 sudah selesai 15 November 2026, tanpa temuan); studi kasus (25 Oktober) dan tautan dari website pribadi sudah beres. Form tetap demo; endpoint Formspree tidak akan dipasang.
 
 
 Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriksaan ulang hari ini.
@@ -132,7 +147,7 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 | Folder | Isi | Status |
 |---|---|---|
 | `00-website-pribadi` | Website portofolio Belfa (Next.js) | **Selesai dan online** |
-| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, `/credits`, dan copy review selesai; Lighthouse 95–96/100/100/100; sisa studi kasus dan review motion di HP |
+| `01-wellness` | Proyek demo 1 (personal training, dengan logo) | **Live di https://kern.belfamuhammad.com** — foto, motion, `/credits`, dan copy review selesai; Lighthouse 95–96/100/100/100; review motion terprogram 390 selesai, sisa konfirmasi rasa oleh pemilik |
 | `02-jasa-lokal` | Proyek demo 2 (kontraktor/klinik) | **Kosong**, belum ada git |
 | `03-hospitality` | Proyek demo 3 (villa/restoran) | **Kosong**, belum ada git |
 | `_referensi` | Analisis referensi desain + teks profil Upwork | Selesai, siap dipakai |
@@ -171,8 +186,8 @@ Bagian proyek lain di bawah adalah catatan sesi sebelumnya, bukan hasil pemeriks
 - **Logo:** konsep A — Calibrated K disetujui; master dan ekspor dibuat ulang lewat `logo-kit/build-logos.mjs`. Stacked baru sudah sejajar pusat; ikon/favicon tidak lagi all-lime; presentasi 7 slide dan lembar uji sudah bersih dari data karangan template. Review visual tetap terbuka.
 - **Referensi:** `C:\Users\USER\Documents\portofolio\_referensi\ANALISIS-REFERENSI.md` (lokasinya di folder `portofolio`, bukan di `Proyek_Klien`). Untuk wellness: **MATE the Label, Parloa, landonorris.com** — dipakai sebagai pecahan prinsip (foto, kejelasan bisnis, sentuhan personal), bukan ditiru.
 - **Sudah terpasang:** font final (next/font), kit logo + presentasi, movement screen 4 pertanyaan, form booking demo dengan validasi dan status demo, penomoran section 01–07, nav “Screen”, metadata publikasi (URL `kern.belfamuhammad.com`, canonical, OG image, sitemap, robots, `WebSite` JSON-LD), menu mobile, tiga foto + halaman `/credits`, dan motion berbasis waktu (`page-motion.tsx`).
-- **Belum selesai:** review motion live oleh pengguna — satu-satunya sisa. Tautan dari website pribadi selesai 15 November 2026; copy review dan studi kasus selesai 25 Oktober; form sengaja tetap demo.
-- **Langkah berikutnya:** konfirmasi motion di HP, lalu perbaiki DNS domain (lihat catatan 15 November).
+- **Belum selesai:** review motion live oleh pemilik — satu-satunya sisa. Review terprogram 390 (lokal + live) sudah selesai 15 November 2026 dan tidak menemukan temuan; yang belum adalah mata pemilik menonton `kern-motion-390.mp4` di HP. Tautan dari website pribadi selesai 15 November 2026; copy review dan studi kasus selesai 25 Oktober; form sengaja tetap demo. DNS domain sudah pulih 15 November 2026.
+- **Langkah berikutnya:** tonton `%TEMP%\opencode\kern-motion\kern-motion-390.mp4` di HP dan konfirmasi rasa motion-nya.
 
 ## Alat & skills (opencode)
 
